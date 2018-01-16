@@ -1,6 +1,6 @@
 <template>
   <ul class="sidebar-menu">
-    <li class="header">TOOLS</li>
+    <li class="header" style="font-weight: bold; font-family: Roboto; font-size: 14px; padding-bottom: 4px; padding-top: 4px">Tools</li>
     <router-link tag="li" class="pageLink" to="/">
       <a>
         <i class="fa fa-desktop"></i>
@@ -14,17 +14,17 @@
       </a>
     </router-link>
 
-    <li class="header">ME</li>
+    <li class="header" style="font-weight: bold; font-family: Roboto; font-size: 14px; padding-bottom: 4px; padding-top: 4px">Admin</li>
     <router-link tag="li" class="pageLink" to="/tasks">
       <a>
         <i class="fa fa-tasks"></i>
         <span class="page">Tasks</span>
       </a>
     </router-link>
-    <router-link tag="li" class="pageLink" to="/setting">
+    <router-link tag="li" class="pageLink" to="/user">
       <a>
-        <i class="fa fa-cog"></i>
-        <span class="page">Settings</span>
+        <i class="fa fa-user-plus" aria-hidden="true"></i>
+        <span class="page">Users</span>
       </a>
     </router-link>
     <li class="treeview">
