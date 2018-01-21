@@ -1,0 +1,140 @@
+<template>
+  <div class="container-fluid pt-2 pb-2 pl-2 pr-2 rounded" style="background:#d7dae0; margin: 10px 5px 10px 5px">
+    <form>
+      <div class="alert alert-success alert-dismissible pt-1 pb-0">
+        <h4><i class="icon fa fa-user-o"></i> Create User</h4>
+      </div>
+      <div class="row">
+        <div class="col-6 form-group">
+          <label class="font-weight-bold">Username</label>
+          <input class="form-control" type="text" placeholder="Enter Username" id="USER_FIELD1">
+        </div>
+        <div class="col-6 form-group">
+          <label class="font-weight-bold">Email Address</label>
+          <input class="form-control" type="text" placeholder="Email Address" id="USER_FIELD2">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 form-group">
+          <label class="font-weight-bold">First Name</label>
+          <input class="form-control" type="text" id="USER_FIELD3">
+        </div>
+        <div class="col-6 form-group">
+          <label class="font-weight-bold">Last Name</label>
+          <input class="form-control" type="text" id="USER_FIELD4">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 form-group">
+          <label class="font-weight-bold">Password</label>
+          <input class="form-control" type="password" placeholder="Must be 8-20 characters long" id="USER_FIELD6">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 form-group">
+          <label class="font-weight-bold">Confirm Password</label>
+          <input class="form-control" type="password" id="USER_FIELD7">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 form-group">
+          <label class="font-weight-bold">Cost Center</label>
+          <input class="form-control" type="text" id="USER_FIELD8">
+        </div>
+        <div class="col-6 form-group" style="margin-top: 40px">
+          <label class="form-check-label font-weight-bold">
+            <input class="form-check-input mr-2" type="checkbox" id="inlineCheckbox1" value="TRUE"> Disable
+          </label>
+          <small id="disableHelper" class="text-muted">
+            (Check this to disable a user)
+          </small>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 form-group">
+          <label class="font-weight-bold">Business Unit</label>
+          <div style="padding-left: 0px">
+            <select id="USER_FIELD9" class="form-control">
+              <option></option>
+              <option value="IRM">BU1</option>
+              <option value="JHAS">BU2</option>
+              <option value="INSURANCE">BU3</option>
+              <option value="PMO">BU4</option>
+              <option value="SECURITIES">BU5</option>
+              <option value="RPS">BU6</option>
+              <option value="TRS">BU7</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-6 form-group">
+          <label class="font-weight-bold">Division</label>
+          <div style="padding-left: 0px">
+            <select id="USER_FIELD10" class="form-control">
+              <option></option>
+              <option value="IRM">IRM</option>
+              <option value="JHAS">JHAS</option>
+              <option value="INSURANCE">INSURANCE</option>
+              <option value="PMO">PMO</option>
+              <option value="SECURITIES">SECURITIES</option>
+              <option value="RPS">RPS</option>
+              <option value="TRS">TRS</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 form-group">
+          <label class="font-weight-bold">Region</label>
+          <div style="padding-left: 0px">
+            <select id="USER_FIELD11" class="form-control">
+              <option></option>
+              <option value="USA">USA</option>
+              <option value="CANADA">CANADA</option>
+              <option value="ASIA">ASIA</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-6 form-group">
+          <label class="font-weight-bold">Division</label>
+          <div style="padding-left: 0px">
+            <select id="USER_FIELD10" class="form-control">
+              <option></option>
+              <option value="IRM">IRM</option>
+              <option value="JHAS">JHAS</option>
+              <option value="INSURANCE">INSURANCE</option>
+              <option value="PMO">PMO</option>
+              <option value="SECURITIES">SECURITIES</option>
+              <option value="RPS">RPS</option>
+              <option value="TRS">TRS</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </form> <!-- /.form-group -->
+  </div>
+</template>
+<script>
+  import datepicker from 'vue-date-picker'
+
+  require('moment')
+  export default {
+    name: 'Settings',
+    components: {datepicker},
+    computed: {
+      datetime() {
+        return new Date()
+      }
+    },
+    methods: {
+      clearInput(vueModel) {
+        vueModel = ''
+      }
+    }
+  }
+</script>
+
+<style>
+  .datetime-picker input {
+    height: 4em !important;
+  }
+</style>

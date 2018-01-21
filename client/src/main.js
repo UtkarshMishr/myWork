@@ -10,6 +10,9 @@ import { sync } from 'vuex-router-sync'
 import routes from './routes'
 import store from './store'
 
+// Import Bootstrap vue components
+import BootstrapVue from 'bootstrap-vue'
+
 // Import Helpers for filters
 // UM Disabled as of now
 // import { domain, count, prettyDate, pluralize } from './filters'
@@ -24,6 +27,7 @@ Vue.filter('prettyDate', prettyDate)
 Vue.filter('pluralize', pluralize) */
 
 Vue.use(VueRouter)
+Vue.use(BootstrapVue)
 
 // Routing logic
 var router = new VueRouter({
