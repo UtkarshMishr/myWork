@@ -1,0 +1,30 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "MyWork Server side",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/app.js local",
+    "lint": "./node_modules/.bin/eslint **/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UtkarshMishr/myWork.git"
+  },
+  "author": "Utkarsh Mishra",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/UtkarshMishr/myWork/issues"
+  },
+  "homepage": "https://github.com/UtkarshMishr/myWork#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "eslint": "^4.16.0",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0",
+    "mysql2": "^1.5.1",
+    "nodemon": "^1.14.11",
+    "sequelize": "^4.31.2"
+  }
+}

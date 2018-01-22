@@ -23,7 +23,7 @@
             <b-col>
               <!-- Employee ID -->
               <b-form-group id="label2"
-                            label="Employee ID:"
+                            label="Employee/IQN ID:"
                             class="font-weight-bold">
                 <b-form-input id="userfield2"
                               type="text"
@@ -168,9 +168,50 @@
               <!-- ./Region -->
             </b-col>
           </b-row>
-
+              <b-card class="card-outline-success">
+                <h5  align="center" class="card-header pt-1 pb-1">Additional Information</h5>
+                <b-row class="pl-2 pr-2">
+                  <b-col>
+                    <!-- Manager Full Name -->
+                    <b-form-group id="label10"
+                                  label="Manager Full Name:"
+                                  class="font-weight-bold">
+                      <b-form-input id="userfield10"
+                                    type="text"
+                                    v-model="form.managerFullName">
+                      </b-form-input>
+                    </b-form-group>
+                    <!-- ./Manager Full Name -->
+                  </b-col>
+                  <b-col>
+                    <!-- Manager Employee ID -->
+                    <b-form-group id="label11"
+                                  label="Manager Employee ID:"
+                                  class="font-weight-bold">
+                      <b-form-input id="userfield11"
+                                    type="text"
+                                    v-model="form.manageremployeeID">
+                      </b-form-input>
+                    </b-form-group>
+                    <!-- ./Manager Employee ID -->
+                  </b-col>
+                </b-row>
+                <b-row  class="pl-2 pr-2">
+                  <b-col>
+                    <b-form-group id="label12"
+                                  label="Notes"
+                                  class="font-weight-bold">
+                    <b-form-textarea id="userfield12"
+                                     state="invalid"
+                                     v-model="form.notes"
+                                     placeholder="Additional Notes"
+                                     :rows="3"></b-form-textarea>
+                    </b-form-group>
+                  </b-col>
+                </b-row>
+              </b-card>
         </b-container>
-        <div class="text-center">
+        <div class="text-center mt-3">
           <b-button type="submit" class="btn btn-success center-block">Submit</b-button>
           <b-button type="reset" variant="btn btn-warning center-block">Reset</b-button>
         </div>
@@ -184,8 +225,15 @@
     data() {
       return {
         form: {
+          username: '',
+          employeeID: '',
+          fullname: '',
           email: '',
-          name: '',
+          password: '',
+          costcenter: '',
+          managerFullName: '',
+          manageremployeeID: '',
+          notes: '',
           businessUnit: null,
           division: null,
           role: null,
