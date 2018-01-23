@@ -3,7 +3,7 @@
   <div>
     <!-- Parent User FORM DIV -->
 
-    <b-container fluid class="mt-2 mb-3 mr-2 ml-2 rounded"
+    <b-container @load="" fluid class="mt-2 mb-3 mr-2 ml-2 rounded"
                  style="border-style: solid; border-width: 2px 1px 1px 1px; border-color: #125acd">
       <!-- User table -->
       <b-container fluid>
@@ -90,109 +90,24 @@
 </template>
 
 <script>
-  import CreateUserApi from '@/api/createUserAPI'
+  import SearchUserApi from '@/api/searchUserAPI'
 
-  const items = [
-    {isActive: true, age: 40, name: {first: 'Dickerson', last: 'Macdonald'}},
-    {isActive: false, age: 21, name: {first: 'Larsen', last: 'Shaw'}},
-    {
-      isActive: false,
-      age: 9,
-      name: {first: 'Mini', last: 'Navarro'},
-      _rowVariant: 'success'
-    },
-    {isActive: false, age: 89, name: {first: 'Geneva', last: 'Wilson'}},
-    {isActive: true, age: 38, name: {first: 'Jami', last: 'Carney'}},
-    {isActive: false, age: 27, name: {first: 'Essie', last: 'Dunlap'}},
-    {isActive: true, age: 40, name: {first: 'Thor', last: 'Macdonald'}},
-    {
-      isActive: true,
-      age: 87,
-      name: {first: 'Larsen', last: 'Shaw'},
-      _cellVariants: {age: 'danger', isActive: 'warning'}
-    },
-    {isActive: false, age: 26, name: {first: 'Mitzi', last: 'Navarro'}},
-    {isActive: false, age: 22, name: {first: 'Genevieve', last: 'Wilson'}},
-    {isActive: true, age: 38, name: {first: 'John', last: 'Carney'}},
-    {isActive: false, age: 29, name: {first: 'Dick', last: 'Dunlap'}}
-  ]
+  var userData
+  var items1 = [{"user_id":1240,"username":"Utkarsh_m","user_emp_id":"cq183884","full_name":"Utkarsh Mishra","email_address":"utkarsj.mishra@gmail.com","password":"324234fsdf3c","business_unit":"JHASS","division":"JHAS","role":"MANGER","cost_center":"3444","region":"USA","manager_full_name":"Matt Welch","manager_emp_id":"38859","notes":"Hello Notes","last_logon":"2018-01-22T04:07:57.000Z","disabled":"","createdAt":"2018-01-22T04:07:57.000Z","updatedAt":"2018-01-22T04:07:57.000Z"},{"user_id":1243,"username":"","user_emp_id":"cq23133","full_name":"Utkarsh Mishra","email_address":"utkarsj.mishra@gmail.com","password":"werwervdf","business_unit":"JHASS","division":"JHAS","role":"MANGER","cost_center":"3444","region":"USA","manager_full_name":"Matt Welch","manager_emp_id":"38859","notes":"Hello Notes","last_logon":"2018-01-22T04:46:16.000Z","disabled":"","createdAt":"2018-01-22T04:46:16.000Z","updatedAt":"2018-01-22T04:46:16.000Z"},{"user_id":1244,"username":"23123","user_emp_id":"cq23133","full_name":"Utkarsh Mishra","email_address":"utkarsj.mishra@gmail.com","password":"werwervdf","business_unit":"JHASS","division":"JHAS","role":"MANGER","cost_center":"3444","region":"USA","manager_full_name":"Matt Welch","manager_emp_id":"38859","notes":"Hello Notes","last_logon":"2018-01-22T04:47:24.000Z","disabled":"","createdAt":"2018-01-22T04:47:24.000Z","updatedAt":"2018-01-22T04:47:24.000Z"},{"user_id":1245,"username":"Utkarsh.mishra","user_emp_id":"21132","full_name":"Utkarsh Mishra 1","email_address":"123@gmail.com","password":"3ewewerwe","business_unit":"IRM","division":"DIV2","role":"MANAGER","cost_center":"1233","region":"REG2","manager_full_name":"qweq","manager_emp_id":"qwe","notes":"qweqweeqw\nhfghfgh","last_logon":"2018-01-22T04:56:30.000Z","disabled":"","createdAt":"2018-01-22T04:56:30.000Z","updatedAt":"2018-01-22T04:56:30.000Z"},{"user_id":1246,"username":"User 1234","user_emp_id":"k989458","full_name":"sdkjkjh jkldjsflkjsl","email_address":"lksjlkl@gmail.com","password":"jkkljlsdf","business_unit":"IRM","division":"DIV3","role":"SUPER USER","cost_center":"213123","region":"REG2","manager_full_name":"123","manager_emp_id":"123","notes":"123123\n\ngdfgdfg","last_logon":"2018-01-22T04:57:44.000Z","disabled":"true","createdAt":"2018-01-22T04:57:44.000Z","updatedAt":"2018-01-22T04:57:44.000Z"},{"user_id":1247,"username":"kjhasdkk","user_emp_id":"0982348","full_name":"lksjfjldsflj","email_address":"123@gmail.com","password":"efsdfsdf","business_unit":"IRM","division":"DIV1","role":"USER","cost_center":"123","region":"REG2","manager_full_name":"213","manager_emp_id":"123","notes":"123123\nhjgghj","last_logon":"2018-01-22T05:25:35.000Z","disabled":"","createdAt":"2018-01-22T05:25:35.000Z","updatedAt":"2018-01-22T05:25:35.000Z"},{"user_id":1248,"username":"Utkarsh.mishra","user_emp_id":"778448","full_name":"Utkarsh Mishra 1","email_address":"123@gmail.com","password":"awdeweqwe","business_unit":"Insurance","division":"DIV4","role":"MANAGER","cost_center":"1233","region":"REG3","manager_full_name":"M","manager_emp_id":"Welch","notes":"THis i additional notes","last_logon":"2018-01-22T18:07:02.000Z","disabled":"","createdAt":"2018-01-22T18:07:02.000Z","updatedAt":"2018-01-22T18:07:02.000Z"},{"user_id":1249,"username":"Utkarsh.mishra","user_emp_id":"tyuu","full_name":"adsadasd","email_address":"asdasd","password":"asdasd","business_unit":"Insurance","division":"DIV3","role":"SUPER USER","cost_center":"12313","region":"REG3","manager_full_name":"werwe","manager_emp_id":"wer","notes":"","last_logon":"2018-01-22T18:10:46.000Z","disabled":"","createdAt":"2018-01-22T18:10:46.000Z","updatedAt":"2018-01-22T18:10:46.000Z"},{"user_id":1250,"username":"Utkarsh.mishra","user_emp_id":"tyuu","full_name":"adsadasd","email_address":"asdasd@gmail.com","password":"asdasd","business_unit":"Insurance","division":"DIV3","role":"SUPER USER","cost_center":"12313","region":"REG3","manager_full_name":"werwe","manager_emp_id":"wer","notes":"","last_logon":"2018-01-22T18:10:52.000Z","disabled":"","createdAt":"2018-01-22T18:10:52.000Z","updatedAt":"2018-01-22T18:10:52.000Z"},{"user_id":1251,"username":"asdasd","user_emp_id":"233","full_name":"weqweqe","email_address":"123@gmail.com","password":"123123","business_unit":"Insurance","division":"DIV1","role":"MANAGER","cost_center":"1233","region":"REG4","manager_full_name":"123","manager_emp_id":"123","notes":"123123","last_logon":"2018-01-22T18:16:18.000Z","disabled":"","createdAt":"2018-01-22T18:16:18.000Z","updatedAt":"2018-01-22T18:16:18.000Z"},{"user_id":1252,"username":"wqeqweqwe","user_emp_id":"1233123","full_name":"sdfbsdfsdf","email_address":"123@gmail.com","password":"sdfsdf","business_unit":"RPS","division":"DIV3","role":"ADMINISTRATOR","cost_center":"s2333","region":"REG4","manager_full_name":"sdf","manager_emp_id":"sdf","notes":"sdf","last_logon":"2018-01-22T18:20:31.000Z","disabled":"","createdAt":"2018-01-22T18:20:31.000Z","updatedAt":"2018-01-22T18:20:31.000Z"}]
 
   export default {
     data() {
       return {
-        valid: true,
-        dismissSecs: 5,
-        dismissCountDown: 0,
-        serverResponse: null,
-        btnSubmitValue: true,
-        form: {
-          username: '',
-          employeeID: '',
-          fullname: '',
-          email: '',
-          password: '',
-          costcenter: '',
-          managerFullName: '',
-          manageremployeeID: '',
-          notes: '',
-          businessUnit: null,
-          division: null,
-          role: null,
-          region: null,
-          checked: []
-        },
-        BU: [
-          {text: 'Select One', value: null},
-          'IRM', 'JHAS', 'Insurance', 'TRS', 'RPS', 'ANNUITIES'
-        ],
-        DIVISION: [
-          {text: 'Select One', value: null},
-          'DIV1', 'DIV2', 'DIV3', 'DIV4', 'DIV5', 'DIV5'
-        ],
-        ROLE: [
-          {text: 'Select One', value: null},
-          'USER', 'MANAGER', 'SUPER USER', 'ADMINISTRATOR'
-        ],
-        REGION: [
-          {text: 'Select One', value: null},
-          'REG1', 'REG2', 'REG3', 'REG4', 'REG5', 'REG5'
-        ],
         // Table item
+        items: null,
         fields: [
-          {
-            // A column that needs custom formatting,
-            // calling formatter 'fullName' in this app
-            key: 'name',
-            label: 'Full Name',
-            formatter: 'fullName'
-          },
-          // A regular column
-          'age',
-          {
-            // A regular column with custom formatter
-            key: 'sex',
-            formatter: (value) => {
-              return value.charAt(0).toUpperCase()
-            }
-          },
-          {
-            // A virtual column with custom formatter
-            key: 'birthYear',
-            label: 'Calculated Birth Year',
-            formatter: (value, key, item) => {
-              return (new Date()).getFullYear() - item.age
-            }
-          }
-        ],
-        items: items,
-        fields: [
-          {key: 'name', label: 'Person Full name', sortable: true},
-          {key: 'age', label: 'Person age', sortable: true, 'class': 'text-center'},
-          {key: 'isActive', label: 'is Active'},
-          {key: 'actions', label: 'Actions'}
+          {key: 'user_id', label: 'User ID', sortable: true},
+          {key: 'username', label: 'Username', sortable: true, 'class': 'text-center'},
+          {key: 'user_emp_id', label: 'Employee ID', sortable: true},
+          {key: 'full_name', label: 'Full Name'}
         ],
         currentPage: 1,
-        perPage: 5,
+        perPage: 10,
         totalRows: items.length,
         pageOptions: [5, 10, 15],
         sortBy: null,
@@ -203,50 +118,17 @@
     }
     ,
     methods: {
-      countDownChanged(dismissCountDown) {
-        this.dismissCountDown = dismissCountDown
-      }
-      ,
-      myChange() {
-        if (this.form.username.length > 0)
-          this.btnSubmitValue = false
-        else this.btnSubmitValue = true
-      }
-      ,
-      async register() {
+
+      searchAll: async function () {
         try {
           const response = await
-            CreateUserApi.register({
-              "username": this.form.username,
-              "user_emp_id": this.form.employeeID,
-              "full_name": this.form.fullname,
-              "email_address": this.form.email,
-              "password": this.form.password,
-              "business_unit": this.form.businessUnit,
-              "division": this.form.division,
-              "role": this.form.role,
-              "cost_center": this.form.costcenter,
-              "region": this.form.region,
-              "manager_full_name": this.form.managerFullName,
-              "manager_emp_id": this.form.manageremployeeID,
-              "notes": this.form.notes,
-              "disabled": calculateDisable(this.form.checked)
-            })
-
-          // this.dismissCountDown = this.dismissSecs
-          this.dismissCountDown = 10
-          this.serverResponse = response
+            SearchUserApi.searchUsers()
+           return JSON.stringify(response.data)
         } catch (err) {
           console.log(err.response.data.error)
-          this.error = err.response.data.error
-          this.dismissCountDown = this.dismissSecs
-          this.serverResponse = err.response.data.error
         }
       }
       ,
-      onReset() {
-        this.$refs.uform.reset()
-      },
       // This section is for table
       info (item, index, button) {
         this.modalInfo.title = `Row index: ${index}`
@@ -263,6 +145,16 @@
         this.currentPage = 1
       }
     }, //  methods end
+    // Before Mount is used to execute this methond on load event
+    beforeMount(){
+      this.searchAll().then(function (result) {
+          //console.log(result)
+        console.log('Assigning to array')
+        items = JSON.parse(result)
+        console.log(items)
+      })
+      console.log('Hi')
+    },
     computed: {
       sortOptions() {
         // Create an options list from our fields
@@ -275,14 +167,6 @@
     } // computed end
   } // Export default end
 
-  function calculateDisable(list) {
-    if (list.length == 0) {
-      return ''
-    } else {
-      return 'true'
-    }
-
-  }
 </script>
 
 <style>
