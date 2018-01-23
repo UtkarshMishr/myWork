@@ -16,6 +16,7 @@ module.exports = {
             })*/
             res.send(user.toJSON())
         } catch (err) {
+            console.log(err.toString())
             res.status(400).send({
                 error: 'Below Error occur, please contact support',
                 Msg: err.toString()

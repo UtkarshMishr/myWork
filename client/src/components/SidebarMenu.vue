@@ -1,4 +1,5 @@
 <template>
+  <div>
   <ul class="sidebar-menu">
     <li class="header" style="font-weight: bold; font-family: Roboto; font-size: 14px; padding-bottom: 4px; padding-top: 4px">Tools</li>
     <router-link tag="li" class="pageLink" to="/">
@@ -13,7 +14,6 @@
         <span class="page">Tables</span>
       </a>
     </router-link>
-
     <li class="header" style="font-weight: bold; font-family: Roboto; font-size: 14px; padding-bottom: 4px; padding-top: 4px">Admin</li>
     <router-link tag="li" class="pageLink" to="/tasks">
       <a>
@@ -21,38 +21,28 @@
         <span class="page">Tasks</span>
       </a>
     </router-link>
+   <!--
     <router-link tag="li" class="pageLink" to="/user">
       <a>
         <i class="fa fa-user-plus" aria-hidden="true"></i>
         <span class="page">Users</span>
       </a>
     </router-link>
+    -->
+    <!-- User Section -->
     <li class="treeview">
       <a href="#">
-        <i class="fa fa-folder-o"></i>
-        <span>Files</span>
+        <i class="fa fa-user"></i> <span>Users</span>
         <span class="pull-right-container">
-          <i class="fa fa-angle-left fa-fw pull-right"></i>
-        </span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
       </a>
       <ul class="treeview-menu">
-        <li>
-          <a href="#">
-            <i class="fa fa-file-word-o"></i> Item 1
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="fa fa-file-picture-o"></i> Item 2
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="fa fa-file-pdf-o"></i> Item 3
-          </a>
-        </li>
+        <li><a href="/userSearch"><i class="fa fa-users"></i> User Search</a></li>
+        <li><a href="/userCreateEdit"><i class="fa fa-user-plus"></i> Users Create/Edit</a></li>
       </ul>
     </li>
+    <!-- ./User Section -->
 
     <li class="header">LOGS</li>
     <router-link tag="li" class="pageLink" to="/access">
@@ -89,6 +79,7 @@
       </a>
     </router-link>
   </ul>
+  </div>
 </template>
 <script>
   export default {

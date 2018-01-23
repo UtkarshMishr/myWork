@@ -7,8 +7,7 @@ module.exports = {
         options: {
             host: process.env.HOST || 'localhost',
             port: process.env.DIALECT || 3306,
-            dialect: process.env.DIALECT || 'mysql',
-             timestamps: false
+            dialect: process.env.DIALECT || 'mysql'
         }
     }
 }

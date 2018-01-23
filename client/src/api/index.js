@@ -1,4 +1,12 @@
 import axios from 'axios'
+
+export default () => {
+  return axios.create({
+    baseURL: 'http://localhost:8081/'
+  })
+}
+
+/* import axios from 'axios'
 import config from '../config'
 
 export default {
@@ -17,3 +25,4 @@ export default {
     return axios({ method, url, data })
   }
 }
+*/

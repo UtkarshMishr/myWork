@@ -6,10 +6,12 @@ import NotFoundView from './components/404.vue'
 import DashboardView from './components/views/Dashboard.vue'
 // import TablesView from './components/views/Tables.vue'
 import TasksView from './components/views/Tasks.vue'
-import SettingView from './components/views/Users.vue'
+//import SettingView from './components/views/Users.vue'
 import AccessView from './components/views/Access.vue'
 import ServerView from './components/views/Server.vue'
 import ReposView from './components/views/Repos.vue'
+import UserSearchView from './components/views/UserSearch.vue'
+import UserCreateEditView from './components/views/UserCreateEdit.vue'
 
 // Routes
 const routes = [
@@ -37,10 +39,20 @@ const routes = [
         component: TasksView,
         name: 'Tasks',
         meta: {description: 'Tasks page in the form of a timeline'}
-      }, {
+      }/*, {
         path: 'user',
         component: SettingView,
         name: 'Users',
+        meta: {description: 'User settings page'}
+      }*/, {
+        path: 'userSearch',
+        component: UserSearchView,
+        name: 'UsersSearch',
+        meta: {description: 'User settings page'}
+      }, {
+        path: 'userCreateEdit',
+        component: UserCreateEditView,
+        name: 'UsersCreateEdit',
         meta: {description: 'User settings page'}
       }, {
         path: 'access',
