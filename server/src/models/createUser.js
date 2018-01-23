@@ -27,4 +27,6 @@ const User = db.sequelize.define('mw_users', {
     disabled: db.Sequelize.STRING
 })
 
+User.associate = function (models) {
+}
 module.exports = User
