@@ -3,33 +3,24 @@
 <template>
   <!-- Main DIV -->
   <div>
+    <!-- Show Alert on Success (pending has to do -->
+      <b-alert :show="dismissCountDown"
+               dismissible
+               variant="success"
+               class="ml-5 mr-5 mb-1 mt-1 center-block"
+               style="width: 80%;"
+               @dismissed="dismissCountdown=0"
+               @dismiss-count-down="countDownChanged">
+        <p>This alert will dismiss after {{dismissCountDown}} seconds...</p>
+        <h4 class="alert-heading fa fa-check">&nbsp;&nbsp;New user created Successfully!</h4>
+      </b-alert>
+    <!-- ./Show Alert on Success -->
     <!-- Parent User FORM DIV -->
     <b-container fluid class="mt-2 mb-3 mr-2 ml-2 rounded"
                  style="border-style: solid; border-width: 2px 1px 1px 1px; border-color: #125acd">
       <div>
-        <!-- Show Alert on Success (pending has to do -->
-        <b-container fluid>
-          <b-alert :show="dismissCountDown"
-                   dismissible
-                   variant="success"
-                   class="mt-alerts"
-                   @dismissed="dismissCountdown=0"
-                   @dismiss-count-down="countDownChanged"
-                   style="width: 400px">
-            <p>This alert will dismiss after {{dismissCountDown}} seconds...</p>
-            <h4 class="alert-heading fa fa-check">&nbsp;&nbsp;New user created Successfully!</h4>
-            <p>
-              <!-- New User {{form.fullname}} create successfully -->
-              yes
-            </p>
-            <hr>
-            <p>
-              Server Response code: {{serverResponse}}
-            </p>
-          </b-alert>
-        </b-container>
-        <!-- ./Show Alert on Success -->
         <b-card-group deck class="mt-2 mb-3 mr-3 ml-1">
+          <!--
           <b-card border-variant="primary"
                   header="Create new myWork User"
                   header-bg-variant="primary"
@@ -40,6 +31,24 @@
             <b-button v-b-modal.modallg class="bg-purple">Create Users</b-button>
             <p></p>
           </b-card>
+          -->
+          <b-card border-variant="primary"
+                  header ="Create User"
+                  header-bg-variant="green"
+                  header-class="h5 pt-1 pb-1"
+                  align="center">
+            <img class="card-img-top img-fluid" src="../../../static/img/custom/user_createUser.png" style="width: 10rem; height: 10rem;">
+            <p class="card-text">
+              Create new myWork Users.
+            </p>
+            <div class="pb-2"><b-button v-b-modal.modallg class="bg-green border-green">Create Users</b-button></div>
+          </b-card>
+          <b-card border-variant="secondary"
+                  header="Secondary"
+                  header-border-variant="secondary"
+                  align="center">
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </b-card>
           <b-card border-variant="secondary"
                   header="Secondary"
                   header-border-variant="secondary"
@@ -47,14 +56,13 @@
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </b-card>
         </b-card-group>
-        <b-modal id="modallg" size="lg" centered title="Create new user" hide-footer hide-header>
+        <b-modal v-model="showModal" id="modallg" size="lg" centered title="Create new user" hide-footer hide-header>
           <!-- User Create FORM -->
           <div>
             <b-card bg-variant="primary" text-variant="white">
               <div class="text-center h5 text-bold" style="font-family: Roboto">
                 <span class="fa fa-user">&nbsp;&nbsp;Create User</span></div>
-              <b-form v-model="valid"
-                      ref="uform"
+              <b-form v-model="userFrom"
                       class="form-control"
                       @submit="register"
                       @reset="onReset"
@@ -69,7 +77,6 @@
                         <b-form-input id="userfield1"
                                       type="text"
                                       v-model="form.username"
-                                      @change="myChange"
                                       required
                                       placeholder="Enter name">
                         </b-form-input>
@@ -207,7 +214,7 @@
                                     label="Cost Center:"
                                     class="font-weight-bold required">
                         <b-form-input id="userfield8"
-                                      type="text"
+                                      type="number"
                                       required
                                       v-model="form.costcenter">
                         </b-form-input>
@@ -218,7 +225,7 @@
                       <!-- Region -->
                       <b-form-group id="label9"
                                     label="Region:"
-                                    class="font-weight-bold">
+                                    class="font-weight-bold required">
                         <b-form-select id="userfield9"
                                        :options="REGION"
                                        required
@@ -272,8 +279,7 @@
                   </b-card>
                 </b-container>
                 <div class="text-center mt-3">
-                  <b-button :disabled="btnSubmitValue"
-                            type="submit"
+                  <b-button type="submit"
                             class="btn btn-success center-block">Submit
                   </b-button>
                   <b-button type="reset" variant="btn btn-warning center-block">Reset</b-button>
@@ -299,22 +305,25 @@
 
 <script>
   import CreateUserApi from '@/api/createUserAPI'
+  import Img from "bootstrap-vue/es/components/image/img";
 
   export default {
+    components: {Img},
     data() {
       return {
-        show: true,
-        valid: true,
+        show: true,  // This is to show Alert
+        showModal: false,
+        userFrom: true,
         dismissSecs: 5,
         dismissCountDown: 0,
         serverResponse: null,
-        btnSubmitValue: true,
         form: {
           username: '',
           employeeID: '',
           fullname: '',
           email: '',
           password: '',
+          cpassword: '',
           costcenter: '',
           managerFullName: '',
           manageremployeeID: '',
@@ -349,12 +358,6 @@
         this.dismissCountDown = dismissCountDown
       }
       ,
-      myChange() {
-        if (this.form.username.length > 0)
-          this.btnSubmitValue = false
-        else this.btnSubmitValue = true
-      }
-      ,
       createUser: async function () {
         try {
           const response = await
@@ -376,8 +379,10 @@
             })
 
           // this.dismissCountDown = this.dismissSecs
-          this.dismissCountDown = 10
+          this.dismissCountDown = 5
           this.serverResponse = response
+          this.showModal = false;
+          //this.showMessage();
         } catch (err) {
           console.log(err.response.data.error)
           this.error = err.response.data.error
@@ -387,13 +392,30 @@
       }
       ,
       register (evt) {
-        evt.preventDefault();
+        evt.preventDefault()
         this.createUser()
       }
       ,
       onReset (evt) {
         evt.preventDefault();
-        this.$refs.uform.reset()
+        /* Reset our form values */
+        this.form.username = '';
+        this.form.employeeID = '';
+        this.form.fullname = '';
+        this.form.email = '';
+        this.form.password = ''
+        this.form.cpassword = ''
+        this.form.businessUnit = ''
+        this.form.division = null
+        this.form.role = null
+        this.form.costcenter = ''
+        this.form.region = null;
+        this.form.managerFullName = ''
+        this.form.manageremployeeID = ''
+        this.form.notes = ''
+        this.form.checked = [];
+
+        /* Rest Finish  */
         this.show = false
         this.$nextTick(() => { this.show = true })
       }
