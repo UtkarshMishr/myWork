@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 <template>
   <!-- Main DIV -->
   <div>
@@ -45,13 +47,18 @@
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </b-card>
         </b-card-group>
-        <b-modal id="modallg" size="lg" centered title="Create new user" hide-footer="true" hide-header="true">
+        <b-modal id="modallg" size="lg" centered title="Create new user" hide-footer hide-header>
           <!-- User Create FORM -->
           <div>
             <b-card bg-variant="primary" text-variant="white">
               <div class="text-center h5 text-bold" style="font-family: Roboto">
                 <span class="fa fa-user">&nbsp;&nbsp;Create User</span></div>
-              <b-form v-model="valid" ref="uform" class="form-control">
+              <b-form v-model="valid"
+                      ref="uform"
+                      class="form-control"
+                      @submit="register"
+                      @reset="onReset"
+                      v-if="show">
                 <b-container>
                   <b-row>
                     <b-col>
@@ -77,6 +84,7 @@
                         <b-form-input id="userfield2"
                                       type="text"
                                       v-model="form.employeeID"
+                                      required
                                       placeholder="Enter Employee or IQN ID">
                         </b-form-input>
                       </b-form-group>
@@ -91,6 +99,7 @@
                         <b-form-input id="userfield3"
                                       type="text"
                                       v-model="form.fullname"
+                                      required
                                       required>
                         </b-form-input>
                         <!-- ./FullName -->
@@ -101,6 +110,7 @@
                           <b-form-input id="userfield4"
                                         type="email"
                                         v-model="form.email"
+                                        required
                                         placeholder="Enter email">
                           </b-form-input>
                         </b-form-group>
@@ -120,6 +130,7 @@
                             <b-form-input id="password1"
                                           class="ml-2"
                                           type="password"
+                                          required
                                           v-model="form.password">
                             </b-form-input>
                           </b-form-group>
@@ -130,6 +141,7 @@
                             <b-form-input id="password2"
                                           class="ml-2"
                                           type="password"
+                                          required
                                           v-model="form.cpassword">
                             </b-form-input>
                           </b-form-group>
@@ -181,6 +193,7 @@
                                     class="font-weight-bold required">
                         <b-form-select id="userfield7"
                                        :options="ROLE"
+                                       required
                                        v-model="form.role">
                         </b-form-select>
                       </b-form-group>
@@ -195,6 +208,7 @@
                                     class="font-weight-bold required">
                         <b-form-input id="userfield8"
                                       type="text"
+                                      required
                                       v-model="form.costcenter">
                         </b-form-input>
                       </b-form-group>
@@ -259,10 +273,10 @@
                 </b-container>
                 <div class="text-center mt-3">
                   <b-button :disabled="btnSubmitValue"
-                            @click="register" type="submit"
+                            type="submit"
                             class="btn btn-success center-block">Submit
                   </b-button>
-                  <b-button @click="onReset" type="reset" variant="btn btn-warning center-block">Reset</b-button>
+                  <b-button type="reset" variant="btn btn-warning center-block">Reset</b-button>
                 </div>
               </b-form>
             </b-card>
@@ -289,6 +303,7 @@
   export default {
     data() {
       return {
+        show: true,
         valid: true,
         dismissSecs: 5,
         dismissCountDown: 0,
@@ -340,7 +355,7 @@
         else this.btnSubmitValue = true
       }
       ,
-      async register() {
+      createUser: async function () {
         try {
           const response = await
             CreateUserApi.register({
@@ -371,8 +386,16 @@
         }
       }
       ,
-      onReset() {
+      register (evt) {
+        evt.preventDefault();
+        this.createUser()
+      }
+      ,
+      onReset (evt) {
+        evt.preventDefault();
         this.$refs.uform.reset()
+        this.show = false
+        this.$nextTick(() => { this.show = true })
       }
     }, //  methods end
 

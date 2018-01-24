@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 <template>
   <!-- Main DIV -->
   <div>
@@ -92,9 +94,6 @@
 <script>
   import SearchUserApi from '@/api/searchUserAPI'
 
-  var userData
-  var items1 = [{"user_id":1240,"username":"Utkarsh_m","user_emp_id":"cq183884","full_name":"Utkarsh Mishra","email_address":"utkarsj.mishra@gmail.com","password":"324234fsdf3c","business_unit":"JHASS","division":"JHAS","role":"MANGER","cost_center":"3444","region":"USA","manager_full_name":"Matt Welch","manager_emp_id":"38859","notes":"Hello Notes","last_logon":"2018-01-22T04:07:57.000Z","disabled":"","createdAt":"2018-01-22T04:07:57.000Z","updatedAt":"2018-01-22T04:07:57.000Z"},{"user_id":1243,"username":"","user_emp_id":"cq23133","full_name":"Utkarsh Mishra","email_address":"utkarsj.mishra@gmail.com","password":"werwervdf","business_unit":"JHASS","division":"JHAS","role":"MANGER","cost_center":"3444","region":"USA","manager_full_name":"Matt Welch","manager_emp_id":"38859","notes":"Hello Notes","last_logon":"2018-01-22T04:46:16.000Z","disabled":"","createdAt":"2018-01-22T04:46:16.000Z","updatedAt":"2018-01-22T04:46:16.000Z"},{"user_id":1244,"username":"23123","user_emp_id":"cq23133","full_name":"Utkarsh Mishra","email_address":"utkarsj.mishra@gmail.com","password":"werwervdf","business_unit":"JHASS","division":"JHAS","role":"MANGER","cost_center":"3444","region":"USA","manager_full_name":"Matt Welch","manager_emp_id":"38859","notes":"Hello Notes","last_logon":"2018-01-22T04:47:24.000Z","disabled":"","createdAt":"2018-01-22T04:47:24.000Z","updatedAt":"2018-01-22T04:47:24.000Z"},{"user_id":1245,"username":"Utkarsh.mishra","user_emp_id":"21132","full_name":"Utkarsh Mishra 1","email_address":"123@gmail.com","password":"3ewewerwe","business_unit":"IRM","division":"DIV2","role":"MANAGER","cost_center":"1233","region":"REG2","manager_full_name":"qweq","manager_emp_id":"qwe","notes":"qweqweeqw\nhfghfgh","last_logon":"2018-01-22T04:56:30.000Z","disabled":"","createdAt":"2018-01-22T04:56:30.000Z","updatedAt":"2018-01-22T04:56:30.000Z"},{"user_id":1246,"username":"User 1234","user_emp_id":"k989458","full_name":"sdkjkjh jkldjsflkjsl","email_address":"lksjlkl@gmail.com","password":"jkkljlsdf","business_unit":"IRM","division":"DIV3","role":"SUPER USER","cost_center":"213123","region":"REG2","manager_full_name":"123","manager_emp_id":"123","notes":"123123\n\ngdfgdfg","last_logon":"2018-01-22T04:57:44.000Z","disabled":"true","createdAt":"2018-01-22T04:57:44.000Z","updatedAt":"2018-01-22T04:57:44.000Z"},{"user_id":1247,"username":"kjhasdkk","user_emp_id":"0982348","full_name":"lksjfjldsflj","email_address":"123@gmail.com","password":"efsdfsdf","business_unit":"IRM","division":"DIV1","role":"USER","cost_center":"123","region":"REG2","manager_full_name":"213","manager_emp_id":"123","notes":"123123\nhjgghj","last_logon":"2018-01-22T05:25:35.000Z","disabled":"","createdAt":"2018-01-22T05:25:35.000Z","updatedAt":"2018-01-22T05:25:35.000Z"},{"user_id":1248,"username":"Utkarsh.mishra","user_emp_id":"778448","full_name":"Utkarsh Mishra 1","email_address":"123@gmail.com","password":"awdeweqwe","business_unit":"Insurance","division":"DIV4","role":"MANAGER","cost_center":"1233","region":"REG3","manager_full_name":"M","manager_emp_id":"Welch","notes":"THis i additional notes","last_logon":"2018-01-22T18:07:02.000Z","disabled":"","createdAt":"2018-01-22T18:07:02.000Z","updatedAt":"2018-01-22T18:07:02.000Z"},{"user_id":1249,"username":"Utkarsh.mishra","user_emp_id":"tyuu","full_name":"adsadasd","email_address":"asdasd","password":"asdasd","business_unit":"Insurance","division":"DIV3","role":"SUPER USER","cost_center":"12313","region":"REG3","manager_full_name":"werwe","manager_emp_id":"wer","notes":"","last_logon":"2018-01-22T18:10:46.000Z","disabled":"","createdAt":"2018-01-22T18:10:46.000Z","updatedAt":"2018-01-22T18:10:46.000Z"},{"user_id":1250,"username":"Utkarsh.mishra","user_emp_id":"tyuu","full_name":"adsadasd","email_address":"asdasd@gmail.com","password":"asdasd","business_unit":"Insurance","division":"DIV3","role":"SUPER USER","cost_center":"12313","region":"REG3","manager_full_name":"werwe","manager_emp_id":"wer","notes":"","last_logon":"2018-01-22T18:10:52.000Z","disabled":"","createdAt":"2018-01-22T18:10:52.000Z","updatedAt":"2018-01-22T18:10:52.000Z"},{"user_id":1251,"username":"asdasd","user_emp_id":"233","full_name":"weqweqe","email_address":"123@gmail.com","password":"123123","business_unit":"Insurance","division":"DIV1","role":"MANAGER","cost_center":"1233","region":"REG4","manager_full_name":"123","manager_emp_id":"123","notes":"123123","last_logon":"2018-01-22T18:16:18.000Z","disabled":"","createdAt":"2018-01-22T18:16:18.000Z","updatedAt":"2018-01-22T18:16:18.000Z"},{"user_id":1252,"username":"wqeqweqwe","user_emp_id":"1233123","full_name":"sdfbsdfsdf","email_address":"123@gmail.com","password":"sdfsdf","business_unit":"RPS","division":"DIV3","role":"ADMINISTRATOR","cost_center":"s2333","region":"REG4","manager_full_name":"sdf","manager_emp_id":"sdf","notes":"sdf","last_logon":"2018-01-22T18:20:31.000Z","disabled":"","createdAt":"2018-01-22T18:20:31.000Z","updatedAt":"2018-01-22T18:20:31.000Z"}]
-
   export default {
     data() {
       return {
@@ -104,11 +103,12 @@
           {key: 'user_id', label: 'User ID', sortable: true},
           {key: 'username', label: 'Username', sortable: true, 'class': 'text-center'},
           {key: 'user_emp_id', label: 'Employee ID', sortable: true},
-          {key: 'full_name', label: 'Full Name'}
+          {key: 'full_name', label: 'Full Name', sortable: true},
+          {key: 'cost_center', label: 'Cost Center', sortable: true}
         ],
         currentPage: 1,
         perPage: 10,
-        totalRows: items.length,
+        totalRows: null,
         pageOptions: [5, 10, 15],
         sortBy: null,
         sortDesc: false,
@@ -121,9 +121,9 @@
 
       searchAll: async function () {
         try {
-          const response = await
-            SearchUserApi.searchUsers()
-           return JSON.stringify(response.data)
+          const response = await SearchUserApi.searchUsers()
+          this.items = JSON.parse(JSON.stringify(response.data))
+          this.totalRows = this.items.length
         } catch (err) {
           console.log(err.response.data.error)
         }
@@ -147,12 +147,7 @@
     }, //  methods end
     // Before Mount is used to execute this methond on load event
     beforeMount(){
-      this.searchAll().then(function (result) {
-          //console.log(result)
-        console.log('Assigning to array')
-        items = JSON.parse(result)
-        console.log(items)
-      })
+      this.searchAll()
       console.log('Hi')
     },
     computed: {
