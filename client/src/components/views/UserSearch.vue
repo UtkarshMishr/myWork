@@ -6,7 +6,8 @@
     <!-- Parent User FORM DIV -->
 
     <b-container @load="" fluid class="mt-2 mb-3 mr-2 ml-2 rounded"
-                 style="border-style: solid; border-width: 2px 1px 1px 1px; border-color: #125acd">
+                 style="border-style: solid; border-width: 2px 1px 1px 1px;
+                 border-color: #125acd; background-color: #ffffff;">
       <!-- User table -->
       <b-container fluid>
         <!-- User Interface controls -->
@@ -57,51 +58,47 @@
                  :sort-by.sync="sortBy"
                  :sort-desc.sync="sortDesc"
                  @filtered="onFiltered"
+                 responsive
+                 hover
+                 striped
+                 small
+                 thStyle=""
+                 thead-class="bg-green border-bottom-2"
         >
-          <template slot="name" slot-scope="row">{{row.value.first}} {{row.value.last}}</template>
-          <template slot="isActive" slot-scope="row">{{row.value?'Yes :)':'No :('}}</template>
-          <template slot="actions" slot-scope="row">
-            <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
-            <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1">
-              Info modal
-            </b-button>
-            <b-button size="sm" @click.stop="row.toggleDetails">
-              {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
-            </b-button>
+          <template slot="index" slot-scope="data">
+            {{data.index + 1}}
           </template>
-          <template slot="row-details" slot-scope="row">
-            <b-card>
-              <ul>
-                <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value}}</li>
-              </ul>
-            </b-card>
+          <template slot="username" slot-scope="row">
+            <b-link v-b-modal.modallg @click="callEdit">
+              {{row.item.username.toLowerCase()}}
+            </b-link>
           </template>
         </b-table>
-
-        <!-- Info modal -->
-        <b-modal id="modalInfo" @hide="resetModal" :title="modalInfo.title" ok-only>
-          <pre>{{ modalInfo.content }}</pre>
-        </b-modal>
-
       </b-container>
       <!-- ./ User table -->
     </b-container>
     <!-- ./Parent User FORM DIV -->
+    <b-modal v-model="showModal" id="modallg" size="lg" centered title="Create new user" hide-footer hide-header>
+      <!-- User Create FORM -->
+     <div>{{useritems}}</div>
+    </b-modal>
   </div>
   <!-- ./Main DIV -->
 </template>
 
 <script>
   import SearchUserApi from '@/api/searchUserAPI'
+  import getUserbyID from '@/api/getUserByIdAPI'
 
   export default {
     data() {
       return {
         // Table item
         items: null,
+        useritems: null,
         fields: [
-          {key: 'user_id', label: 'User ID', sortable: true},
-          {key: 'username', label: 'Username', sortable: true, 'class': 'text-center'},
+          'index',
+          {key: 'username', label: 'Username', sortable: true},
           {key: 'user_emp_id', label: 'Employee ID', sortable: true},
           {key: 'full_name', label: 'Full Name', sortable: true},
           {key: 'cost_center', label: 'Cost Center', sortable: true}
@@ -127,9 +124,18 @@
         } catch (err) {
           console.log(err.response.data.error)
         }
-      }
-      ,
+      },
+      async callEdit() {
+        try {
+        const response_1 = await getUserbyID.getUserbyID(9)
+        this.useritems = JSON.parse(JSON.stringify(response_1.data))
+          console.log(this.useritems)
+        } catch (err) {
+          console.log(err.response_1.data.error)
+        }
+      },
       // This section is for table
+      /*
       info (item, index, button) {
         this.modalInfo.title = `Row index: ${index}`
         this.modalInfo.content = JSON.stringify(item, null, 2)
@@ -138,7 +144,7 @@
       resetModal () {
         this.modalInfo.title = ''
         this.modalInfo.content = ''
-      },
+      }, */
       onFiltered (filteredItems) {
         // Trigger pagination to update the number of buttons/pages due to filtering
         this.totalRows = filteredItems.length
@@ -148,7 +154,6 @@
     // Before Mount is used to execute this methond on load event
     beforeMount(){
       this.searchAll()
-      console.log('Hi')
     },
     computed: {
       sortOptions() {
@@ -165,45 +170,5 @@
 </script>
 
 <style>
-  .datetime-picker input {
-    height: 4em !important
-  }
-
-  input[type="text"] {
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-  }
-
-  input[type="password"] {
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-  }
-
-  input[type="email"] {
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-  }
-
-  .mt-alerts {
-    position: fixed;
-    z-index: 999;
-  }
-
-  .required legend:before {
-    content: "*";
-    color: red;
-    font-size: large;
-    padding-right: 5px
-  }
-
-  .required label:before {
-    content: "*";
-    color: red;
-    font-size: large;
-    padding-right: 5px
-  }
 
 </style>
