@@ -12,6 +12,11 @@
                @dismissed="dismissCountdown=0"
                @dismiss-count-down="countDownChanged">
         <p>This alert will dismiss after {{dismissCountDown}} seconds...</p>
+        <b-progress variant="warning"
+                    :max="dismissSecs"
+                    :value="dismissCountDown"
+                    height="4px">
+        </b-progress>
         <h4 class="alert-heading fa fa-check">&nbsp;&nbsp;New user created Successfully!</h4>
       </b-alert>
     <!-- ./Show Alert on Success -->
@@ -162,7 +167,7 @@
                       <b-form-checkbox-group v-model="form.checked"
                                              id="disabled"
                                              class="mt-4 pl-4 pr-5 pt-2 font-weight-bold">
-                        <b-form-checkbox value="true">Disabled</b-form-checkbox>
+                        <b-form-checkbox value="true" unchecked-value="">Disabled</b-form-checkbox>
                       </b-form-checkbox-group>
                       <!-- ./Disabled -->
                     </b-col>
@@ -291,7 +296,7 @@
 </template>
 
 <script>
-  import CreateUserApi from '@/api/createUserAPI'
+  import CreateUserApi from '@/api/UserCreateAPI'
   import Img from "bootstrap-vue/es/components/image/img";
 
   export default {
@@ -300,7 +305,7 @@
       return {
         show: true,  // This is to show Alert
         showModal: false,
-        userFrom: true,
+        userFrom: false,
         dismissSecs: 5,
         dismissCountDown: 0,
         serverResponse: null,
@@ -368,7 +373,8 @@
           // this.dismissCountDown = this.dismissSecs
           this.dismissCountDown = 5
           this.serverResponse = response
-          this.showModal = false;
+          this.showModal = false
+          this.userFrom = false
           //this.showMessage();
         } catch (err) {
           console.log(err.response.data.error)
@@ -381,6 +387,8 @@
       register (evt) {
         evt.preventDefault()
         this.createUser()
+        this.showModal = false
+        this.userFrom = false
       }
       ,
       onReset (evt) {
@@ -392,7 +400,7 @@
         this.form.email = '';
         this.form.password = ''
         this.form.cpassword = ''
-        this.form.businessUnit = ''
+        this.form.businessUnit = null
         this.form.division = null
         this.form.role = null
         this.form.costcenter = ''

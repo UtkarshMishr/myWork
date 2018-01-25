@@ -8,8 +8,8 @@ export default {
 }
 */
 
-var register = function (credentials) {
-  return Api().post('/user', credentials)
+var register = function (formBody) {
+  return Api().post('/user', formBody)
 }
 
 export default {
