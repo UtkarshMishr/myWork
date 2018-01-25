@@ -20,18 +20,6 @@
                  style="border-style: solid; border-width: 2px 1px 1px 1px; border-color: #125acd">
       <div>
         <b-card-group deck class="mt-2 mb-3 mr-3 ml-1">
-          <!--
-          <b-card border-variant="primary"
-                  header="Create new myWork User"
-                  header-bg-variant="primary"
-                  header-text-variant="white"
-                  class="h5"
-                  align="center">
-            <p class="h6 pt-2 text-muted"> Add new myWork user</p>
-            <b-button v-b-modal.modallg class="bg-purple">Create Users</b-button>
-            <p></p>
-          </b-card>
-          -->
           <b-card border-variant="primary"
                   header ="Create User"
                   header-bg-variant="green"
@@ -65,8 +53,7 @@
               <b-form v-model="userFrom"
                       class="form-control"
                       @submit="register"
-                      @reset="onReset"
-                      v-if="show">
+                      @reset="onReset">
                 <b-container>
                   <b-row>
                     <b-col>

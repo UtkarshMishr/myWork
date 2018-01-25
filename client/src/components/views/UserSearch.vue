@@ -6,8 +6,7 @@
     <!-- Parent User FORM DIV -->
 
     <b-container @load="" fluid class="mt-2 mb-3 mr-2 ml-2 rounded"
-                 style="border-style: solid; border-width: 2px 1px 1px 1px;
-                 border-color: #125acd; background-color: #ffffff;">
+                 style="border: 1px solid #125acd;border-top-width: 2px;background-color: #ffffff;">
       <!-- User table -->
       <b-container fluid>
         <!-- User Interface controls -->
@@ -69,7 +68,7 @@
             {{data.index + 1}}
           </template>
           <template slot="username" slot-scope="row">
-            <b-link v-b-modal.modallg @click="callEdit">
+            <b-link v-b-modal.modallg @click="callEdit(row.item.user_id)">
               {{row.item.username.toLowerCase()}}
             </b-link>
           </template>
@@ -78,9 +77,53 @@
       <!-- ./ User table -->
     </b-container>
     <!-- ./Parent User FORM DIV -->
-    <b-modal v-model="showModal" id="modallg" size="lg" centered title="Create new user" hide-footer hide-header>
-      <!-- User Create FORM -->
-     <div>{{useritems}}</div>
+    <b-modal v-model="showModal" id="modallg" size="lg" centered title="Edit user" hide-footer hide-header>
+      <!-- Edit Create FORM -->
+      <div>
+        <b-card bg-variant="primary" text-variant="white">
+          <div class="text-center h5 text-bold" style="font-family: Roboto">
+            <span class="fa fa-user">&nbsp;&nbsp;Edit User</span></div>
+          <b-form v-model="userFrom"
+                  class="form-control"
+                  @submit="register"
+                  @reset="onReset"
+                  v-if="show">
+            <b-container>
+              <b-row>
+                <b-col>
+                  <!-- Username -->
+                  <b-form-group id="label1"
+                                label="Username:"
+                                class="font-weight-bold required">
+                    <b-form-input id="userfield1"
+                                  type="text"
+                                  v-model="form.username"
+                                  required
+                                  placeholder="Enter name">
+                    </b-form-input>
+                  </b-form-group>
+                  <!-- ./Username -->
+                </b-col>
+                <b-col>
+                  <!-- Employee ID -->
+                  <b-form-group id="label2"
+                                label="Employee/IQN ID:"
+                                class="font-weight-bold required">
+                    <b-form-input id="userfield2"
+                                  type="text"
+                                  v-model="form.employeeID"
+                                  required
+                                  placeholder="Enter Employee or IQN ID">
+                    </b-form-input>
+                  </b-form-group>
+                  <!-- ./Employee ID -->
+                </b-col>
+              </b-row>
+            </b-container>
+          </b-form>
+        </b-card>
+      </div>
+      <!-- ./User Edit Form -->
     </b-modal>
   </div>
   <!-- ./Main DIV -->
@@ -93,6 +136,7 @@
   export default {
     data() {
       return {
+        show: true,
         // Table item
         items: null,
         useritems: null,
@@ -110,7 +154,27 @@
         sortBy: null,
         sortDesc: false,
         filter: null,
-        modalInfo: {title: '', content: ''}
+        modalInfo: {title: '', content: ''},
+        //User Edit Form Details
+        form: {
+          username: '',
+          employeeID: '',
+          fullname: '',
+          email: '',
+          password: '',
+          cpassword: '',
+          costcenter: '',
+          managerFullName: '',
+          manageremployeeID: '',
+          notes: '',
+          businessUnit: null,
+          division: null,
+          role: null,
+          region: null,
+          checked: []
+        },
+        userFrom: true,
+        showModal: false
       }  // return end
     }
     ,
@@ -125,26 +189,17 @@
           console.log(err.response.data.error)
         }
       },
-      async callEdit() {
+      async callEdit(item) {
+        this.showModal=true
+        this.userFrom=true
         try {
-        const response_1 = await getUserbyID.getUserbyID(9)
+        const response_1 = await getUserbyID.getUserbyID(item)
         this.useritems = JSON.parse(JSON.stringify(response_1.data))
           console.log(this.useritems)
         } catch (err) {
-          console.log(err.response_1.data.error)
+          console.log('Error')
         }
       },
-      // This section is for table
-      /*
-      info (item, index, button) {
-        this.modalInfo.title = `Row index: ${index}`
-        this.modalInfo.content = JSON.stringify(item, null, 2)
-        this.$root.$emit('bv::show::modal', 'modalInfo', button)
-      },
-      resetModal () {
-        this.modalInfo.title = ''
-        this.modalInfo.content = ''
-      }, */
       onFiltered (filteredItems) {
         // Trigger pagination to update the number of buttons/pages due to filtering
         this.totalRows = filteredItems.length
