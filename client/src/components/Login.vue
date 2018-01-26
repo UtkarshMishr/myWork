@@ -1,5 +1,8 @@
 <template>
-  <div class="container container-table">
+  <div>
+    <b-container fluid>
+
+    </b-container>
     <div class="row vertical-10p">
       <div class="container">
         <img src="/static/img/myWork.png" class="center-block logo">

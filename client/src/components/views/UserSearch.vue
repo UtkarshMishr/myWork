@@ -485,6 +485,7 @@
       return 'true'
     }
   }
+
 </script>
 
 <style>

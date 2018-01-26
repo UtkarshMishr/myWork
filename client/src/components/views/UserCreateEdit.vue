@@ -4,21 +4,21 @@
   <!-- Main DIV -->
   <div>
     <!-- Show Alert on Success (pending has to do -->
-      <b-alert :show="dismissCountDown"
-               dismissible
-               variant="success"
-               class="ml-5 mr-5 mb-1 mt-1 center-block"
-               style="width: 80%;"
-               @dismissed="dismissCountdown=0"
-               @dismiss-count-down="countDownChanged">
-        <p>This alert will dismiss after {{dismissCountDown}} seconds...</p>
-        <b-progress variant="warning"
-                    :max="dismissSecs"
-                    :value="dismissCountDown"
-                    height="4px">
-        </b-progress>
-        <h4 class="alert-heading fa fa-check">&nbsp;&nbsp;New user created Successfully!</h4>
-      </b-alert>
+    <b-alert :show="dismissCountDown"
+             dismissible
+             variant="success"
+             class="ml-5 mr-5 mb-0 mt-1 center-block"
+             style="width: 50%"
+             @dismissed="dismissCountdown=0"
+             @dismiss-count-down="countDownChanged">
+      <b-progress variant="warning"
+                  animated
+                  :max="dismissSecs"
+                  :value="dismissCountDown"
+                  height="4px">
+      </b-progress>
+      <h4 class="alert-heading fa fa-check">&nbsp;&nbsp;New user created Successfully!</h4>
+    </b-alert>
     <!-- ./Show Alert on Success -->
     <!-- Parent User FORM DIV -->
     <b-container fluid class="mt-2 mb-3 mr-2 ml-2 rounded"
@@ -26,27 +26,52 @@
       <div>
         <b-card-group deck class="mt-2 mb-3 mr-3 ml-1">
           <b-card border-variant="primary"
-                  header ="Create User"
+                  header="Users"
                   header-bg-variant="green"
                   header-class="h5 pt-1 pb-1"
                   align="center">
-            <img class="card-img-top img-fluid" src="../../../static/img/custom/user_createUser.png" style="width: 10rem; height: 10rem;">
-            <p class="card-text">
+            <div class="pt-2">
+            <img class="card-img-top img-fluid" src="../../../static/img/custom/user_createUser.png"
+                 style="width: 8rem; height: 8rem;">
+            </div>
+            <div class="card-text pt-2">
               Create new myWork Users.
-            </p>
-            <div class="pb-2"><b-button v-b-modal.modallg class="bg-green border-green">Create Users</b-button></div>
+            </div>
+            <div class="pb-2 pt-4">
+              <b-button v-b-modal.modallg class="bg-green border-green; text-bold">Create Users</b-button>
+            </div>
           </b-card>
-          <b-card border-variant="secondary"
-                  header="Secondary"
-                  header-border-variant="secondary"
+          <b-card border-variant="warning "
+                  header="Cost Centers"
+                  header-bg-variant="warning "
+                  header-class="h5 pt-1 pb-1"
                   align="center">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="pt-2">
+            <img class="card-img-top " src="../../../static/img/custom/cost_center.png"
+                 style="width: 8rem; height: 8rem;">
+            </div>
+            <div class="card-text pt-2">
+              Create new Cost Center.
+            </div>
+            <div class="pb-2 pt-4">
+              <b-button v-b-modal.modallg class="bg-warning border-warning; text-bold">Create Cost Center</b-button>
+            </div>
           </b-card>
-          <b-card border-variant="secondary"
-                  header="Secondary"
-                  header-border-variant="secondary"
+          <b-card border-variant="info"
+                  header="Cost Rates"
+                  header-bg-variant="info "
+                  header-class="h5 pt-1 pb-1"
                   align="center">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="pt-4">
+            <img class="card-img-top " src="../../../static/img/custom/cost_rate.png"
+                 style="width: 7rem; height: 7rem;">
+            </div>
+            <div class="card-text pt-2">
+              Create new Cost Rates.
+            </div>
+            <div class="pb-2 pt-4">
+              <b-button v-b-modal.modallg class="bg-info border-info; text-bold">Create Cost Rates</b-button>
+            </div>
           </b-card>
         </b-card-group>
         <b-modal v-model="showModal" id="modallg" size="lg" centered title="Create new user" hide-footer hide-header>
@@ -375,6 +400,7 @@
           this.serverResponse = response
           this.showModal = false
           this.userFrom = false
+          this.clean()
           //this.showMessage();
         } catch (err) {
           console.log(err.response.data.error)
@@ -384,20 +410,20 @@
         }
       }
       ,
-      register (evt) {
+      register(evt) {
         evt.preventDefault()
         this.createUser()
         this.showModal = false
         this.userFrom = false
       }
       ,
-      onReset (evt) {
+      onReset(evt) {
         evt.preventDefault();
         /* Reset our form values */
-        this.form.username = '';
-        this.form.employeeID = '';
-        this.form.fullname = '';
-        this.form.email = '';
+        this.form.username = ''
+        this.form.employeeID = ''
+        this.form.fullname = ''
+        this.form.email = ''
         this.form.password = ''
         this.form.cpassword = ''
         this.form.businessUnit = null
@@ -408,11 +434,31 @@
         this.form.managerFullName = ''
         this.form.manageremployeeID = ''
         this.form.notes = ''
-        this.form.checked = [];
+        this.form.checked = []
 
         /* Rest Finish  */
         this.show = false
-        this.$nextTick(() => { this.show = true })
+        this.$nextTick(() => {
+          this.show = true
+        })
+      },
+
+      clean: function () {
+        this.form.username = ''
+        this.form.employeeID = ''
+        this.form.fullname = ''
+        this.form.email = ''
+        this.form.password = ''
+        this.form.cpassword = ''
+        this.form.businessUnit = null
+        this.form.division = null
+        this.form.role = null
+        this.form.costcenter = ''
+        this.form.region = null;
+        this.form.managerFullName = ''
+        this.form.manageremployeeID = ''
+        this.form.notes = ''
+        this.form.checked = []
       }
     }, //  methods end
 
