@@ -1,4 +1,6 @@
-/* eslint-disable */
+/*
+eslint-disable
+*/
 <template>
   <!-- Main DIV -->
   <div>

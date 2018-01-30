@@ -4,6 +4,7 @@
       <w>costcenter</w>
       <w>fullname</w>
       <w>manageremployee</w>
+      <w>useritems</w>
     </words>
   </dictionary>
 </component>
