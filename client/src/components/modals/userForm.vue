@@ -6,7 +6,7 @@
         <b-card bg-variant="primary" text-variant="white">
           <div class="text-center h5 text-bold" style="font-family: Roboto">
             <span class="fa fa-user">&nbsp;&nbsp;{{ myMessage }}</span></div>
-          <b-form class="form-control">
+          <b-form class="form-control" @submit="this.register" @reset="onReset">
             <b-container>
               <b-row>
                 <b-col>
@@ -105,6 +105,7 @@
                                 class="font-weight-bold">
                     <b-form-select id="userfield5"
                                    :options="BU"
+                                   class="rounded"
                                    v-model="form.businessUnit">
                     </b-form-select>
                   </b-form-group>
@@ -128,6 +129,7 @@
                                 class="font-weight-bold">
                     <b-form-select id="userfield6"
                                    :options="DIVISION"
+                                   class="rounded"
                                    v-model="form.division">
                     </b-form-select>
                   </b-form-group>
@@ -139,6 +141,7 @@
                                 label="Role:"
                                 class="font-weight-bold required">
                     <b-form-select id="userfield7"
+                                   class="rounded"
                                    :options="ROLE"
                                    required
                                    v-model="form.role">
@@ -169,6 +172,7 @@
                     <b-form-select id="userfield9"
                                    :options="REGION"
                                    required
+                                   class="rounded"
                                    v-model="form.region">
                     </b-form-select>
                   </b-form-group>
@@ -220,11 +224,11 @@
             </b-container>
             <div class="text-center mt-3">
               <b-button type="submit"
-                        class="btn btn-success center-block"
-                        @click="register">Submit
+                        class="btn btn-success center-block">Submit
               </b-button>
               <b-button type="reset" variant="btn btn-warning center-block"
-              @click="onReset">Reset</b-button>
+                       >Reset
+              </b-button>
             </div>
           </b-form>
         </b-card>
@@ -236,10 +240,13 @@
 
 <script>
   import CreateUserApi from '@/api/UserCreateAPI'
+  import  { BU }  from '@/store/userStore'
+  import  { Role }  from '@/store/userStore'
+  import  { Region }  from '@/store/userStore'
+  import  { Division }  from '@/store/userStore'
 
   export default {
-    props: ['myMessage','show'],
-
+    props: ['myMessage', 'show'],
     data() {
       return {
         vshow: this.show,
@@ -263,46 +270,32 @@
           region: null,
           checked: []
         },
-        BU: [
-          {text: 'Select One', value: null},
-          'IRM', 'JHAS', 'Insurance', 'TRS', 'RPS', 'ANNUITIES'
-        ],
-        DIVISION: [
-          {text: 'Select One', value: null},
-          'DIV1', 'DIV2', 'DIV3', 'DIV4', 'DIV5', 'DIV5'
-        ],
-        ROLE: [
-          {text: 'Select One', value: null},
-          'USER', 'MANAGER', 'SUPER USER', 'ADMINISTRATOR'
-        ],
-        REGION: [
-          {text: 'Select One', value: null},
-          'REG1', 'REG2', 'REG3', 'REG4', 'REG5', 'REG5'
-        ]
+        BU: BU,
+        DIVISION: Division,
+        ROLE: Role,
+        REGION: Region
       }  // return end
     },
     methods: {
-      close() {
-        this.$emit('close')
-      },
-      createUser: async function (list) {
+
+      createUser: async function () {
         try {
           const response = await
             CreateUserApi.register({
-              "username": list.username,
-              "user_emp_id": list.employeeID,
-              "full_name": list.fullname,
-              "email_address": list.email,
-              "password": list.password,
-              "business_unit": list.businessUnit,
-              "division": list.division,
-              "role": list.role,
-              "cost_center": list.costcenter,
-              "region": list.region,
-              "manager_full_name": list.managerFullName,
-              "manager_emp_id": list.manageremployeeID,
-              "notes": list.notes,
-              "disabled": calculateDisable(list.checked)
+              "username": this.form.username,
+              "user_emp_id": this.form.employeeID,
+              "full_name": this.form.fullname,
+              "email_address": this.form.email,
+              "password": this.form.password,
+              "business_unit": this.form.businessUnit,
+              "division": this.form.division,
+              "role": this.form.role,
+              "cost_center": this.form.costcenter,
+              "region": this.form.region,
+              "manager_full_name": this.form.managerFullName,
+              "manager_emp_id": this.form.manageremployeeID,
+              "notes": this.form.notes,
+              "disabled": calculateDisable(this.form.checked)
             })
 
           // this.dismissCountDown = this.dismissSecs
@@ -310,16 +303,16 @@
           this.serverResponse = response
           //this.showMessage();
         } catch (err) {
-          console.log(err.response.data.error)
-          this.error = err.response.data.error
+          console.log(err)
+          this.error = err
           this.dismissCountDown = this.dismissSecs
           this.serverResponse = err.response.data.error
         }
       }
       ,
-      register(evt) {
+      async register(evt) {
         evt.preventDefault()
-        this.createUser(this.form)
+        await this.createUser()
       },
       onReset(evt) {
         evt.preventDefault();
@@ -350,6 +343,15 @@
     }
 
   } // Export default end
+
+  function calculateDisable(list) {
+    if (list.length == 0) {
+      return ''
+    } else {
+      return 'true'
+    }
+  }
+
 </script>
 
 <style>
@@ -383,6 +385,12 @@
     border-radius: 4px;
   }
 
+  .rounded {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+  }
+
   .mt-alerts {
     position: fixed;
     z-index: 999;
@@ -395,10 +403,4 @@
     padding-right: 5px
   }
 
-  .required label:before {
-    content: "*";
-    color: red;
-    font-size: large;
-    padding-right: 5px
-  }
 </style>

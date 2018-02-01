@@ -11,8 +11,16 @@
       <b-container fluid>
         <!-- User Interface controls -->
         <b-row>
-          <b-col md="6" class="my-1">
-            <b-form-group horizontal label="Filter" class="mb-0">
+          <b-col md="4">
+            <b-form-group horizontal
+                          label="Total Users"
+                          label-class="font-weight-bold pt-0"
+                          class="mb-0">
+            </b-form-group>
+            {{totalRows}}
+          </b-col>
+          <b-col md="4">
+            <b-form-group horizontal label="Filter" label-class="font-weight-bold pt-0">
               <b-input-group>
                 <b-form-input v-model="filter" placeholder="Type to Search"/>
                 <b-input-group-button>
@@ -21,8 +29,8 @@
               </b-input-group>
             </b-form-group>
           </b-col>
-          <b-col md="6" class="my-1">
-            <b-form-group horizontal label="Sort" class="mb-0">
+          <b-col md="4">
+            <b-form-group horizontal label="Sort" class="mb-0" label-class="font-weight-bold pt-0">
               <b-input-group>
                 <b-form-select v-model="sortBy" :options="sortOptions">
                   <option slot="first" :value="null">-- none --</option>
@@ -34,14 +42,6 @@
                   </b-form-select>
                 </b-input-group-button>
               </b-input-group>
-            </b-form-group>
-          </b-col>
-          <b-col md="6" class="my-1">
-            <b-pagination :total-rows="totalRows" :per-page="perPage" v-model="currentPage" class="my-0"/>
-          </b-col>
-          <b-col md="6" class="my-1">
-            <b-form-group horizontal label="Per page" class="mb-0">
-              <b-form-select :options="pageOptions" v-model="perPage"/>
             </b-form-group>
           </b-col>
         </b-row>
@@ -62,7 +62,7 @@
                  striped
                  small
                  thStyle=""
-                 thead-class="bg-green border-bottom-2"
+                 thead-class="bg-blue border-bottom-2"
         >
           <template slot="index" slot-scope="data">
             {{data.index + 1}}
@@ -73,6 +73,18 @@
             </b-link>
           </template>
         </b-table>
+        <!-- Footer Section -->
+        <b-row>
+          <b-col md="6" class="mt-4">
+            <b-pagination :total-rows="totalRows" :per-page="perPage" v-model="currentPage" class="my-0"/>
+          </b-col>
+          <b-col md="2"></b-col>
+          <b-col md="4">
+            <b-form-group horizontal label="Per page" class="mt-0" label-class="font-weight-bold pt-0">
+              <b-form-select :options="pageOptions" v-model="perPage"/>
+            </b-form-group>
+          </b-col>
+        </b-row>
       </b-container>
       <!-- ./ User table -->
     </b-container>

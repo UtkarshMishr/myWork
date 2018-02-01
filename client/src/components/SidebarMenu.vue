@@ -14,7 +14,6 @@
         <span class="page">Tables</span>
       </a>
     </router-link>
-    <li class="header" style="font-weight: bold; font-family: Roboto; font-size: 14px; padding-bottom: 4px; padding-top: 4px">Admin</li>
     <router-link tag="li" class="pageLink" to="/tasks">
       <a>
         <i class="fa fa-tasks"></i>
@@ -29,6 +28,22 @@
       </a>
     </router-link>
     -->
+    <!-- TimeSheet Section -->
+    <li class="header" style="font-weight: bold; font-family: Roboto; font-size: 14px; padding-bottom: 4px; padding-top: 4px">Time Management</li>
+    <li class="treeview">
+      <a href="#">
+        <i class="fa fa-calendar-times-o"></i> <span>TimeSheet</span>
+        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+      </a>
+      <ul class="treeview-menu">
+        <li><a href="/timesheetSubmit"><i class="fa fa-calendar"></i> Timesheet Search</a></li>
+        <li><a href="/timesheetSubmit"><i class="fa fa-clock-o"></i> Timesheet Create</a></li>
+      </ul>
+    </li>
+    <!-- ./TimeSheet Section -->
+    <li class="header" style="font-weight: bold; font-family: Roboto; font-size: 14px; padding-bottom: 4px; padding-top: 4px">Administration</li>
     <!-- User Section -->
     <li class="treeview">
       <a href="#">

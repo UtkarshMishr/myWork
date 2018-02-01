@@ -12,6 +12,7 @@ import ServerView from './components/views/Server.vue'
 import ReposView from './components/views/Repos.vue'
 import UserSearchView from './components/views/UserSearch.vue'
 import UserCreateEditView from './components/views/UserCreateEdit.vue'
+import timesheetCreate from './components/views/timesheetSubmit.vue'
 
 // Routes
 const routes = [
@@ -53,6 +54,11 @@ const routes = [
         path: 'userCreateEdit',
         component: UserCreateEditView,
         name: 'UsersCreateEdit',
+        meta: {description: 'User settings page'}
+      }, {
+        path: 'timesheetSubmit',
+        component: timesheetCreate,
+        name: 'timesheetSubmit',
         meta: {description: 'User settings page'}
       }, {
         path: 'access',
