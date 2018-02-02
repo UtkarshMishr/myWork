@@ -12,6 +12,7 @@ import store from './store'
 
 // Import Bootstrap vue components
 import BootstrapVue from 'bootstrap-vue'
+import vSelect from 'vue-select'
 
 // Import Helpers for filters
 // UM Disabled as of now
@@ -28,6 +29,7 @@ Vue.filter('pluralize', pluralize) */
 
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)
+Vue.component('v-select', vSelect)
 
 // Routing logic
 var router = new VueRouter({

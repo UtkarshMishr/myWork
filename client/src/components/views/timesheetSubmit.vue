@@ -1,7 +1,10 @@
 <template xmlns="http://www.w3.org/1999/html">
   <div>
+    <div class="text-center rounded h5 bg-olive-active mt-1 mr-2 ml-2 mr pb-1 pt-1">
+      <span>Create Timesheet</span>
+    </div>
     <div class="alert alert-dismissible mt-2 mb-3 mr-2 ml-2 pb-1 pt-1"
-         style="background: #93da8d; border-left: 5px solid #6cab67">
+         style="background: #d8f0e8; border-left: 5px solid #6cab67">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -12,12 +15,10 @@
     <div>
       <b-form @submit="this.submitTimesheet">
         <div class="container-fluid mt-2 mb-3 mr-2 ml-2 rounded"
-             style="border: 1px solid #36A831; border-top-width: 2px;background-color: #ffffff;">
-          <div class="text-center h5 bg-olive pb-1">
-            <span>Create Timesheet</span>
-          </div>
+             style="border: 1px solid #36A831; border-top-width: 2px; background-color: #ffffff;">
           <!-- Date and time range -->
-          <div class="form-group">
+          <div class="form-group rounded mt-1 pt-2 pb-2 pl-2 pr-4"
+               style="border: #777777 solid 1px; width: 20rem">
             <label class="font-weight-bold">Timesheet Period:</label>
 
             <div class="input-group">
@@ -34,51 +35,44 @@
           <table id="myTable" class="table order-list">
             <thead>
             <tr class="timesheetTableHeader">
-              <td>Project</td>
-              <td>Value Stream</td>
-              <td>Work Type</td>
-              <td>Activity</td>
-              <td>Charge Back</td>
-              <td>Hours</td>
+              <td style="width: 30rem">Project</td>
+              <td style="width: 15rem">Work Type</td>
+              <td style="width: 20rem">Activity</td>
+              <td style="width: 25rem">Charge Back</td>
+              <td style="width: 10rem">Hours</td>
             </tr>
             </thead>
             <tbody>
             <tr v-if="show">
               <td>
-                <b-form-input type="text"
-                              required
-                              v-model="form.projectName"
-                              name="ProjectName">
-                </b-form-input>
-              </td>
-              <td>
-                <b-form-input type="text"
-                              v-model="form.valueStream"
-                              name="ValueStream">
-                </b-form-input>
+                <v-select :options="Project" label="name"
+                          placeholder="Search Project"
+                          v-model="form.projectID">
+                </v-select>
               </td>
               <td>
                 <b-form-select name="wrkcat"
                                :options="work_Category"
                                required
-                               class="rounded"
+                               class="rounded h-25"
                                v-model="form.workCategory">
                 </b-form-select>
               </td>
               <td>
-                <b-form-input type="text"
-                              v-model="form.activity"
-                              name="activity">
-                </b-form-input>
+                <v-select :options="Activity" label="AA"
+                          placeholder="Search Activity"
+                          v-model="form.activity">
+                </v-select>
+              </td>
+              <td>
+                <v-select :options="CostCenter" label="CC"
+                          placeholder="Search Cost Center"
+                          v-model="form.chargeBackCC">
+                </v-select>
               </td>
               <td>
                 <b-form-input type="number"
-                              v-model="form.chargeBackCC"
-                              name="cbcc">
-                </b-form-input>
-              </td>
-              <td>
-                <b-form-input type="number"
+                              class="pb-1 pt-1"
                               required
                               v-model="form.hours"
                               name="Hours">
@@ -92,40 +86,34 @@
             .-->
             <tr v-if="show1">
               <td>
-                <b-form-input type="text"
-                              required
-                              v-model="form1.projectName"
-                              name="ProjectName">
-                </b-form-input>
-              </td>
-              <td>
-                <b-form-input type="text"
-                              v-model="form1.valueStream"
-                              name="ValueStream">
-                </b-form-input>
+                <v-select :options="Project" label="name"
+                          placeholder="Search Project"
+                          v-model="form1.projectID">
+                </v-select>
               </td>
               <td>
                 <b-form-select name="wrkcat"
                                :options="work_Category"
                                required
-                               class="rounded"
+                               class="rounded h-25"
                                v-model="form1.workCategory">
                 </b-form-select>
               </td>
               <td>
-                <b-form-input type="text"
-                              v-model="form1.activity"
-                              name="activity">
-                </b-form-input>
+                <v-select :options="Activity" label="AA"
+                          placeholder="Search Activity"
+                          v-model="form1.activity">
+                </v-select>
+              </td>
+              <td>
+                <v-select :options="CostCenter" label="CC"
+                          placeholder="Search Cost Center"
+                          v-model="form1.chargeBackCC">
+                </v-select>
               </td>
               <td>
                 <b-form-input type="number"
-                              v-model="form1.chargeBackCC"
-                              name="cbcc">
-                </b-form-input>
-              </td>
-              <td>
-                <b-form-input type="number"
+                              class="pb-1 pt-1"
                               required
                               v-model="form1.hours"
                               name="Hours">
@@ -142,40 +130,34 @@
             .-->
             <tr v-if="show2">
               <td>
-                <b-form-input type="text"
-                              required
-                              v-model="form2.projectName"
-                              name="ProjectName">
-                </b-form-input>
-              </td>
-              <td>
-                <b-form-input type="text"
-                              v-model="form2.valueStream"
-                              name="ValueStream">
-                </b-form-input>
+                <v-select :options="Project" label="name"
+                          placeholder="Search Project"
+                          v-model="form2.projectID">
+                </v-select>
               </td>
               <td>
                 <b-form-select name="wrkcat"
                                :options="work_Category"
                                required
-                               class="rounded"
+                               class="rounded h-25"
                                v-model="form2.workCategory">
                 </b-form-select>
               </td>
               <td>
-                <b-form-input type="text"
-                              v-model="form2.activity"
-                              name="activity">
-                </b-form-input>
+                <v-select :options="Activity" label="AA"
+                          placeholder="Search Activity"
+                          v-model="form1.activity">
+                </v-select>
+              </td>
+              <td>
+                <v-select :options="CostCenter" label="CC"
+                          placeholder="Search Cost Center"
+                          v-model="form2.chargeBackCC">
+                </v-select>
               </td>
               <td>
                 <b-form-input type="number"
-                              v-model="form2.chargeBackCC"
-                              name="cbcc">
-                </b-form-input>
-              </td>
-              <td>
-                <b-form-input type="number"
+                              class="pb-1 pt-1"
                               required
                               v-model="form2.hours"
                               name="Hours">
@@ -190,18 +172,18 @@
             </tbody>
           </table>
           <div class="pb-2 pt-1 text-right">
-            <button id="addrow" type="button"
-                    class="btn tn-block pl-3 pr-3 bg-olive-active"
-                    @click="createLine">
+            <b-button id="addrow" type="button"
+                      class="btn tn-block pl-3 pr-3 bg-olive-active"
+                      @click="createLine">
               <i class="fa fa-plus" aria-hidden="true"></i> Add Line
-            </button>
+            </b-button>
           </div>
           <div class="pb-2 pt-1 text-center">
-            <button type="submit"
-                    class="btn bg-blue-gradient">
+            <b-button type="submit"
+                      class="btn bg-blue-gradient">
               <i class="fa fa-refresh fa-spin fa-fw"/>
               &nbsp;&nbsp;Submit
-            </button>
+            </b-button>
           </div>
         </div>
       </b-form>
@@ -212,6 +194,9 @@
 
 <script>
   import {workcategory} from '@/store/timesheetStore'
+  import {projects} from '@/store/rallyProjects'
+  import {costcenter} from '@/store/costCenter'
+  import {activities} from '@/store/activities'
 
   var period_name = ''
   var start_date = ''
@@ -220,11 +205,13 @@
   export default {
     data() {
       return {
+        Project: projects,
+        CostCenter: costcenter,
         work_Category: workcategory,
+        Activity: activities,
         show: true,
         form: {
-          projectName: '',
-          valueStream: '',
+          projectID: '',
           workCategory: null,
           activity: '',
           chargeBackCC: '',
@@ -232,8 +219,7 @@
         },
         show1: false,
         form1: {
-          projectName: '',
-          valueStream: '',
+          projectID: '',
           workCategory: null,
           activity: '',
           chargeBackCC: '',
@@ -241,8 +227,7 @@
         },
         show2: false,
         form2: {
-          projectName: '',
-          valueStream: '',
+          projectID: '',
           workCategory: null,
           activity: '',
           chargeBackCC: '',
@@ -253,23 +238,23 @@
     methods: {
       submitTimesheet(evt) {
         evt.preventDefault()
-        alert(JSON.stringify(this.form) + JSON.stringify(this.form1) +'\n'+period_name
-      +'\n'+start_date+'\n'+end_date)
+        alert(JSON.stringify(this.form) + JSON.stringify(this.form1) + '\n' + period_name
+          + '\n' + start_date + '\n' + end_date +'\n'+ this.SelectProjectID(this.form.projectID))
       },
       createLine() {
-        if(counter==0){
+        if (counter == 0) {
           console.log(counter)
           this.show1 = true
           counter++
         }
-        else if(counter==1){
+        else if (counter == 1) {
           console.log(counter)
           this.show2 = true
           counter++
         }
       },
       deleteLine(val) {
-        if (val == 1){
+        if (val == 1) {
           this.show1 = false
           this.form1.projectName = ''
           this.form1.valueStream = ''
@@ -279,7 +264,7 @@
           this.form1.hours = ''
           counter--
         }
-        if (val == 2){
+        if (val == 2) {
           this.show2 = false
           this.form2.projectName = ''
           this.form2.valueStream = ''
@@ -289,7 +274,15 @@
           this.form2.hours = ''
           counter--
         }
+      },
+      SelectProjectID(obj) {
+        return obj['id']
       }
+    },
+    /* ./ Method Close*/
+    /*Starting Computed*/
+    computed: {
+
     }
   }
 
@@ -306,7 +299,7 @@
       period_name = (start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY')).toString()
       start_date = start.format('MM/DD/YYYY').toString()
       end_date = end.format('MM/DD/YYYY').toString()
-        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
     }
 
     $('#reportrange').daterangepicker({
@@ -326,7 +319,11 @@
 </script>
 
 <style scoped>
-  body {
+  div {
+    font-family: Roboto;
+  }
+
+  table {
     font-family: Roboto;
   }
 
@@ -345,6 +342,7 @@
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+    background: lightyellow;
   }
 
   .rounded {
