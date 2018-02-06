@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-container style="max-width: 400px">
-      <b-form class="form-signin"  @submit="checkCreds">
+      <b-form @submit="checkCreds">
         <div class="text-center">
           <img src="/static/img/myWork.png" style="max-width: 15em; max-height: 15em"
                class="mt-5">
@@ -29,7 +29,8 @@
         </div>
         <div class="text-center">
           <b-button class="lg bg-blue-gradient mt-2"
-                    type="submit"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Sign in</b-button>
+                    type="submit"
+                    ><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Sign in</b-button>
         </div>
       </b-form>
     </b-container>
@@ -40,8 +41,8 @@
 </template>
 
 <script>
+  /* eslint-disable */
   import userAuth from '@/api/AuthenticationAPI'
-  import Api from '@/api/index'
 
   export default {
     name: 'Login',
@@ -55,11 +56,16 @@
       }
     },
     methods: {
-      async checkCreds () {
-        console.log('asda')
+      checkCreds: async function () {
+        event.preventDefault()
         const response = await userAuth.authentication()
-        console.log(response.toString())
-        console.log('asda')
+        console.log(JSON.stringify(response.data))
+        if (response.data == 'Success'){
+          this.$router.push('/')
+          console.log('Hellp')
+//          alert(JSON.stringify(response.data))
+        }
+
          // if (response == 'Success')
           //  this.$route.router.go('/user');
         // const {username, password} = this

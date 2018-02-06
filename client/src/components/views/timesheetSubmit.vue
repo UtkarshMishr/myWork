@@ -1,68 +1,73 @@
-<template xmlns="http://www.w3.org/1999/html">
+<template>
   <div>
-    <div class="text-center rounded h5 bg-olive-active mt-1 mr-2 ml-2 mr pb-1 pt-1">
-      <span>Create Timesheet</span>
-    </div>
-    <div class="alert alert-dismissible mt-2 mb-3 mr-2 ml-2 pb-1 pt-1"
-         style="background: #d8f0e8; border-left: 5px solid #6cab67">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <span class="fa fa-exclamation-circle" aria-hidden="true" style=" color: #5e955a;"></span>
-      <strong class="alert-heading text-bold pr-3" aria-hidden="true"> Note!</strong>
-      <span style="font-size: 10pt">Only current and last month timesheets are allowed to edit/create.</span>
-    </div>
-    <div>
-      <b-form @submit="submitTimesheet">
-        <div class="container-fluid mt-2 mb-3 mr-2 ml-2 rounded pl-0 pr-0"
-             style="border: 1px solid #36A831; border-top-width: 2px; background-color: #ffffff;">
-          <!-- Date and time range -->
-          <div class="form-group rounded mt-1 ml-2 pt-2 pb-2 pl-2 pr-4"
-               style="border: #777777 solid 1px; width: 20rem; display: inline-block">
-            <label class="font-weight-bold">Timesheet Period:</label>
+    <div class="box box-success mt-2 ml-2 mr-2 pb-2" style="width: 99%">
+      <div class="box-header with-border">
+        <h3 class="box-title">Create Timesheet</h3>
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool"><i class="fa fa-minus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="alert alert-dismissible mt-2 mb-3 ml-2 mr-2 pb-1 pt-1"
+           style="background: #d8eafc; border-left: 5px solid #6494c4">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <i class="fa fa-exclamation-circle" aria-hidden="true" style=" color: #6494c4;"></i>
+        <strong class="alert-heading text-bold pr-3" aria-hidden="true"> Note!</strong>
+        <span style="font-size: 10pt">Only current and last month timesheets are allowed to edit/create.</span>
+      </div>
 
-            <div class="input-group">
-              <button id="reportrange" type="button" class="btn btn-default pull-right">
+      <div>
+        <b-form @submit="submitTimesheet">
+          <div class="container-fluid mt-2 mb-3 pl-0 pr-0">
+            <!-- Date and time range -->
+            <div class="form-group rounded mt-1 ml-2 pt-2 pb-2 pl-2 pr-4"
+                 style="border: #777777 solid 1px; width: 20rem; display: inline-block">
+              <label class="font-weight-bold">Timesheet Period:</label>
+
+              <div class="input-group">
+                <button id="reportrange" type="button" class="btn btn-default pull-right">
                     <span>
                       <i class="fa fa-calendar"></i> Date range picker
                     </span>
-                <i class="fa fa-caret-down"></i>
-              </button>
+                  <i class="fa fa-caret-down"></i>
+                </button>
+              </div>
             </div>
-          </div>
-          <div style="display: inline-block; float: right"
-               class="mt-5">
-            <b-button @click="modalShow = !modalShow"
-                      class="bg-maroon-gradient fa fa-plus-square">
-              Add Project
-            </b-button>
-          </div>
+            <div style="display: inline-block; float: right"
+                 class="mt-5">
+              <b-button @click="modalShow = !modalShow"
+                        class="bg-maroon-gradient fa fa-plus-square">
+                Add Project
+              </b-button>
+            </div>
 
-          <!-- Modal Defination - Add Project -->
+            <!-- Modal Defination - Add Project -->
 
-          <b-modal v-model="modalShow" size="lg"
-                   title="Select Project"
-                   header-class="pt-1 pb-1 bg-blue"
-                   footer-class="pt-1 pb-1"
-                   @ok="passProject">
-            <v-select :options="Project" label="name"
-                      placeholder="Search Project"
-                      v-model="selectProject">
-            </v-select>
-          </b-modal>
-          <!-- ./Date and time range -->
+            <b-modal v-model="modalShow" size="lg"
+                     title="Select Project"
+                     header-class="pt-1 pb-1 bg-blue"
+                     footer-class="pt-1 pb-1"
+                     @ok="passProject">
+              <v-select :options="Project" label="name"
+                        placeholder="Search Project"
+                        v-model="selectProject">
+              </v-select>
+            </b-modal>
+            <!-- ./Date and time range -->
 
-          <table id="myTable"
-                 class="table order-list ml-1"
-          style="width: 99%">
-            <thead>
-            <tr class="timesheetTableHeader">
-              <td style="width: 60rem">Activity</td>
-              <td style="width: 30rem">Charge Back</td>
-              <td style="width: 10rem">Hours</td>
-            </tr>
-            </thead>
-            <tbody>
+            <table id="myTable"
+                   class="table order-list ml-1"
+                   style="width: 99%">
+              <thead>
+              <tr class="timesheetTableHeader">
+                <td style="width: 60rem">Activity</td>
+                <td style="width: 30rem">Charge Back</td>
+                <td style="width: 10rem">Hours</td>
+              </tr>
+              </thead>
+              <tbody>
               <tr v-show="showProject1">
                 <td colspan="2">
                   <div class="projectDiv pl-3 pr-1 bg-blue-gradient">
@@ -73,8 +78,11 @@
                   <b-button id="addrow"
                             type="button"
                             :disabled=disablePrjLineBtn1
-                            class="fa fa-plus bg-olive-active pb-1 pt-1"
+                            class="pb-0
+                            pt-0
+                            bg-olive-active"
                             @click="createLine(1)">
+                    <i class="fa fa-plus"></i>
                     Add Line
                   </b-button>
                 </td>
@@ -163,7 +171,7 @@
                     <i class="fa fa-trash-o"/></button>
                 </td>
               </tr>
-            <!-- Project 2 Start from here -->
+              <!-- Project 2 Start from here -->
               <tr v-show="showProject2">
                 <td colspan="2">
                   <div class="projectDiv pl-3 pr-1  bg-blue-gradient">
@@ -173,8 +181,11 @@
                 <td>
                   <b-button type="button"
                             :disabled=disablePrjLineBtn2
-                            class="fa fa-plus bg-olive-active pb-1 pt-1"
+                            class="bg-olive-active
+                            pb-0
+                            pt-0"
                             @click="createLine(2)">
+                    <i class="fa fa-plus"></i>
                     Add Line
                   </b-button>
                 </td>
@@ -265,23 +276,25 @@
                     <i class="fa fa-trash-o"/></button>
                 </td>
               </tr>
-            </tbody>
-          </table>
-          <div class="pb-2 pt-1 text-center" v-if="showSubmit">
-            <b-button type="submit"
-                      class="btn bg-blue-gradient">
-              <i class="fa fa-refresh fa-spin fa-fw"/>
-              &nbsp;&nbsp;Submit
-            </b-button>
+              </tbody>
+            </table>
+            <div class="pb-2 pt-1 text-center" v-if="showSubmit">
+              <b-button type="submit"
+                        class="btn bg-blue-gradient">
+                <i class="fa fa-refresh fa-spin fa-fw"/>
+                &nbsp;&nbsp;Submit
+              </b-button>
+            </div>
           </div>
-        </div>
-      </b-form>
+        </b-form>
+      </div>
     </div>
 
   </div>
 </template>
 
 <script>
+  /* eslint-disable */
   import {projects} from '@/store/rallyProjects'
   import {costcenter} from '@/store/costCenter'
   import {activities} from '@/store/activities'
@@ -480,12 +493,9 @@
 </script>
 
 <style scoped>
-  div {
-    font-family: Roboto;
-  }
-
-  table {
-    font-family: Roboto;
+  body {
+    font-family: Roboto, Open Sans, helvetica, arial, sans-serif;
+    background: #f8f8f8 !important;
   }
 
   .timesheetTableHeader {

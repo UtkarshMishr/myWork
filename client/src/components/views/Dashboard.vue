@@ -158,8 +158,8 @@
           </div>
           <!-- /.box-body -->
           <div class="box-footer clearfix">
-            <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>
-            <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
+            <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Add New Project</a>
+            <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Projects</a>
           </div>
           <!-- /.box-footer -->
         </div>
@@ -173,6 +173,7 @@
 </template>
 
 <script>
+  /* eslint-disable */
   import Chart from 'chart.js'
 
   export default {

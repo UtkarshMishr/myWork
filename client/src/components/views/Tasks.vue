@@ -27,7 +27,7 @@
   </section>
 </template>
 <script>
-
+  /* eslint-disable */
   import {timeline} from '../../demo'
   export default {
     name: 'Tasks',

@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 export const servers = [{
   name: 'www01',
   status: 'success',

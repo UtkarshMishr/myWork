@@ -100,6 +100,7 @@
 </template>
 
 <script>
+  /* eslint-disable */
   import userFormModal from '@/components/modals/userForm'
 
   export default {
@@ -127,5 +128,8 @@
 </script>
 
 <style>
-
+  body {
+    font-family: Roboto, Open Sans, helvetica, arial, sans-serif;
+    background: #f8f8f8 !important;
+  }
 </style>

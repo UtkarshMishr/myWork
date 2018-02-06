@@ -362,6 +362,7 @@ eslint-disable
 </template>
 
 <script>
+  /* eslint-disable */
   import CreateUserApi from '@/api/createUserAPI'
 
   const items = [
@@ -558,6 +559,10 @@ eslint-disable
 </script>
 
 <style>
+  body {
+    font-family: Roboto, Open Sans, helvetica, arial, sans-serif;
+    background: #f8f8f8 !important;
+  }
   .datetime-picker input {
     height: 4em !important
   }

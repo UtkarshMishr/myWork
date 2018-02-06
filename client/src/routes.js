@@ -1,3 +1,4 @@
+/* eslint-disable */
 import DashView from './components/Dash.vue'
 import LoginView from './components/Login.vue'
 import NotFoundView from './components/404.vue'
@@ -18,6 +19,7 @@ import timesheetCreate from './components/views/timesheetSubmit.vue'
 const routes = [
   {
     path: '/login',
+    name: 'login',
     component: LoginView
   },
   {

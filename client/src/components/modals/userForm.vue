@@ -239,6 +239,7 @@
 </template>
 
 <script>
+  /* eslint-disable */
   import CreateUserApi from '@/api/UserCreateAPI'
   import  { BU }  from '@/store/userStore'
   import  { Role }  from '@/store/userStore'
@@ -355,6 +356,10 @@
 </script>
 
 <style>
+  body {
+    font-family: Roboto, Open Sans, helvetica, arial, sans-serif;
+    background: #f8f8f8 !important;
+  }
   input[type="text"] {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;

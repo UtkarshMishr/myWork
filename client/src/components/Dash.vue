@@ -1,11 +1,16 @@
 <template>
-  <div>
+  <div style="background: #ffffff">
     <header class="main-header">
-	<span>
-		<a href="/"><img src="/static/img/myWork1.svg" alt="Logo"  class="center-block logo"></a>
-	</span>
+      <!-- Logo -->
+      <router-link to="/" class="logo bg-blue-gradient">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini text-center text-yellow text-bold"><i class="fa fa-home"></i></span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg text-center text-yellow text-bold pb-2">
+          <i class="fa fa-home"></i><b>  myWork</b></span>
+      </router-link>
       <!-- Header Navbar -->
-      <nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #018fd3;" role="navigation">
+      <nav class="navbar navbar-toggleable-md navbar-light pt-1 pb-0" style="background-color: #018fd3;" role="navigation">
         <!-- Sidebar toggle button-->
         <a href="javascript:;" class="sidebar-toggle" data-toggle="offcanvas" role="button">
           <span class="sr-only">Toggle navigation</span>
@@ -24,7 +29,7 @@
             <!-- /.Search Menu -->
             <!-- User Account Menu -->
             <li class="nav-item dropdown">
-              <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a href="javascript:;" class="dropdown-toggle" style="color: #ffffff" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <!-- The user image in the navbar-->
                 <img src="/static/img/user.png" style="width: 40px; height: 40px" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
@@ -33,7 +38,8 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="#">My Profile</a>
                 <a class="dropdown-item" href="#">Contact Support</a>
-                <a class="dropdown-item text-danger" href="#">Sign Out</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item text-danger" href="/login">Sign Out</a>
               </div>
             </li>
             <!-- /. User Account Menu -->
@@ -99,6 +105,10 @@
 </script>
 
 <style lang="scss">
+  body {
+    font-family: Roboto, Open Sans, helvetica, arial, sans-serif;
+    background: #f8f8f8 !important;
+  }
   .wrapper.fixed_layout {
     .main-header {
       position: fixed;

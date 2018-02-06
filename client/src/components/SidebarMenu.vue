@@ -32,14 +32,14 @@
     <li class="header" style="font-weight: bold; font-family: Roboto; font-size: 14px; padding-bottom: 4px; padding-top: 4px">Time Management</li>
     <li class="treeview">
       <a href="#">
-        <i class="fa fa-calendar-times-o"></i> <span>TimeSheet</span>
+        <i class="fa fa-calendar-check-o text-aqua"></i> <span>TimeSheet</span>
         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
       </a>
       <ul class="treeview-menu">
-        <li><a href="/timesheetSubmit"><i class="fa fa-calendar"></i> Timesheet Search</a></li>
-        <li><a href="/timesheetSubmit"><i class="fa fa-clock-o"></i> Timesheet Create</a></li>
+        <li><router-link to="/timesheetSubmit"><i class="fa fa-calendar text-aqua"></i> Timesheet Search</router-link></li>
+        <li><router-link to="/timesheetSubmit"><i class="fa fa-clock-o text-aqua"></i> Timesheet Create</router-link></li>
       </ul>
     </li>
     <!-- ./TimeSheet Section -->
@@ -47,14 +47,14 @@
     <!-- User Section -->
     <li class="treeview">
       <a href="#">
-        <i class="fa fa-user"></i> <span>Users</span>
+        <i class="fa fa-user text-green"></i> <span>Users</span>
         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
       </a>
       <ul class="treeview-menu">
-        <li><a href="/userSearch"><i class="fa fa-users"></i> User Search</a></li>
-        <li><a href="/userCreateEdit"><i class="fa fa-user-plus"></i> Users Create/Edit</a></li>
+        <li><router-link to="/userSearch"><i class="fa fa-users text-green"></i> User Search/Edit</router-link></li>
+        <li><router-link to="/userCreateEdit"><i class="fa fa-user-plus text-green"></i> Users Create</router-link></li>
       </ul>
     </li>
     <!-- ./User Section -->

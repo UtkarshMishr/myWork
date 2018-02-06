@@ -5,32 +5,30 @@
   <div>
     <!-- Parent User FORM DIV -->
 
-    <b-container @load="" fluid class="mt-2 mb-3 mr-2 ml-2 rounded"
+    <b-container fluid class="mt-2 mb-3 mr-2 ml-2 rounded"
                  style="border: 1px solid #125acd;border-top-width: 2px;background-color: #ffffff;">
       <!-- User table -->
       <b-container fluid>
         <!-- User Interface controls -->
         <b-row>
-          <b-col md="4">
-            <b-form-group horizontal
-                          label="Total Users"
-                          label-class="font-weight-bold pt-0"
-                          class="mb-0">
-            </b-form-group>
-            {{totalRows}}
+          <b-col>
+            <div class="text-left mt-4 rounded">
+              <b-button class="bg-blue-gradient">
+                Total Users <b-badge class="bg-gray ml-2">{{totalRows}}</b-badge>
+              </b-button>
+            </div>
           </b-col>
-          <b-col md="4">
-            <b-form-group horizontal label="Filter" label-class="font-weight-bold pt-0">
+          <b-col>
+            <h5><b-badge class="bg-green pl-4 pr-4 ml-1">Filters</b-badge></h5>
               <b-input-group>
                 <b-form-input v-model="filter" placeholder="Type to Search"/>
                 <b-input-group-button>
-                  <b-btn :disabled="!filter" @click="filter = ''">Clear</b-btn>
+                  <b-btn :disabled="!filter" @click="filter = ''" variant="primary">Clear</b-btn>
                 </b-input-group-button>
               </b-input-group>
-            </b-form-group>
           </b-col>
-          <b-col md="4">
-            <b-form-group horizontal label="Sort" class="mb-0" label-class="font-weight-bold pt-0">
+          <b-col>
+            <h5><b-badge class="bg-green pl-4 pr-4 ml-1">Sort</b-badge></h5>
               <b-input-group>
                 <b-form-select v-model="sortBy" :options="sortOptions">
                   <option slot="first" :value="null">-- none --</option>
@@ -42,7 +40,6 @@
                   </b-form-select>
                 </b-input-group-button>
               </b-input-group>
-            </b-form-group>
           </b-col>
         </b-row>
 
@@ -61,8 +58,8 @@
                  hover
                  striped
                  small
-                 thStyle=""
-                 thead-class="bg-blue border-bottom-2"
+                 class="mt-2"
+                 thead-class="bg-blue"
         >
           <template slot="index" slot-scope="data">
             {{data.index + 1}}
@@ -74,15 +71,13 @@
           </template>
         </b-table>
         <!-- Footer Section -->
-        <b-row>
-          <b-col md="6" class="mt-4">
+        <b-row class="mb-2">
+          <b-col md="6">
             <b-pagination :total-rows="totalRows" :per-page="perPage" v-model="currentPage" class="my-0"/>
           </b-col>
-          <b-col md="2"></b-col>
+          <b-col md="2" class="text-right"><h5><b-badge class="bg-green pl-4 pr-4 ml-1">Per Page</b-badge></h5></b-col>
           <b-col md="4">
-            <b-form-group horizontal label="Per page" class="mt-0" label-class="font-weight-bold pt-0">
               <b-form-select :options="pageOptions" v-model="perPage"/>
-            </b-form-group>
           </b-col>
         </b-row>
       </b-container>
@@ -327,6 +322,7 @@
 </template>
 
 <script>
+  /* eslint-disable */
   import SearchUserApi from '@/api/UserSearchAPI'
   import getUserbyID from '@/api/UserGetUserByIdAPI'
   import updateUserbyID from '@/api/UserUpdateByIdAPI'
@@ -501,6 +497,10 @@
 </script>
 
 <style>
+  body {
+    font-family: Roboto, Open Sans, helvetica, arial, sans-serif;
+    background: #f8f8f8 !important;
+  }
   input[type="text"] {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
