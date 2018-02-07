@@ -400,10 +400,12 @@
         if (index == 1) {
           if (lineCounterPrj1 == 0) {
             this.showLine1Prj1 = true
+            this.disablePrjLineBtn1 = false
             lineCounterPrj1++
           }
           else if (lineCounterPrj1 == 1) {
             this.showLine2Prj1 = true
+            this.disablePrjLineBtn1 = false
             lineCounterPrj1++
           }
           else if (lineCounterPrj1 == 2){
@@ -413,10 +415,12 @@
         if (index == 2) {
           if (lineCounterPrj2 == 0) {
             this.showLine1Prj2 = true
+            this.disablePrjLineBtn2 = false
             lineCounterPrj2++
           }
           else if (lineCounterPrj2 == 1) {
             this.showLine2Prj2 = true
+            this.disablePrjLineBtn2 = false
             lineCounterPrj2++
           }
           else if (lineCounterPrj2 == 2){
