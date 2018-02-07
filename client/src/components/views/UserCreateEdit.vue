@@ -23,61 +23,70 @@
     <!-- Parent User FORM DIV -->
     <b-container fluid class="mt-2 mb-3 mr-2 ml-2 rounded"
                  style="border-style: solid; border-width: 2px 1px 1px 1px; border-color: #125acd">
+      <div class="mt-2 rounded">
+        <b-row>
+        <div class="col-sm-12 col-md-6">
+          <div class="box box-solid">
+            <div class="box-body">
+              <h6 style="background-color:#dedede;"
+              class="rounded text-center pt-2 pb-2">
+                CREATE USERS
+              </h6>
+              <div class="media">
+                <div class="media-left">
+                    <img src="../../../static/img/custom/user_createUser.png"
+                         alt="Create User" class="media-object"
+                         style="width: 90px;height: auto;border-radius: 4px;box-shadow: 0 1px 3px rgba(0,0,0,.15);">
+                </div>
+                <div class="media-body">
+                  <div class="mt-4 mb-0 mr-2">
+                    <p class="pull-right">
+                      <b-button  @click= "showModal = !showModal"
+                                 class="btn btn-success btn-sm">
+                        Create User
+                      </b-button>
+                    </p>
+                  </div>
+                  <h6 class="mt-0 ml-4">Create new users</h6>
+                  <p class="ml-4" style="font-size: 14px">Use network username for profile creation</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="col-sm-12 col-md-6">
+            <div class="box box-solid">
+              <div class="box-body">
+                <h6 style="background-color:#dedede;"
+                    class="rounded text-center pt-2 pb-2">
+                  CREATE COST RATES
+                </h6>
+                <div class="media">
+                  <div class="media-left">
+                    <img src="../../../static/img/custom/cost_rate.png"
+                         alt="Create User" class="media-object"
+                         style="width: 80px;height: auto;border-radius: 4px;box-shadow: 0 1px 3px rgba(0,0,0,.15);">
+                  </div>
+                  <div class="media-body">
+                    <div class="mt-4 mb-0 mr-2">
+                      <p class="pull-right">
+                        <b-button  @click= "showModal = !showModal"
+                                   class="btn btn-success btn-sm">
+                          Create Cost Rate
+                        </b-button>
+                      </p>
+                    </div>
+                    <h6 class="mt-0 ml-4">Create new cost rates</h6>
+                    <p class="ml-4" style="font-size: 14px">Use network username for profile creation</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </b-row>
+      </div>
       <div>
-        <b-card-group deck class="mt-2 mb-3 mr-3 ml-1">
-          <b-card border-variant="primary"
-                  header="Users"
-                  header-bg-variant="green"
-                  header-class="h5 pt-1 pb-1"
-                  align="center">
-            <div class="pt-2">
-              <img class="card-img-top img-fluid" src="../../../static/img/custom/user_createUser.png"
-                   style="width: 8rem; height: 8rem;">
-            </div>
-            <div class="card-text pt-2">
-              Create new myWork Users.
-            </div>
-            <div class="pb-2 pt-4">
-              <b-button id="show-modal"
-                        @click= "showModal = !showModal"
-                        class="bg-green border-green; text-bold">Create
-                Users
-              </b-button>
-            </div>
-          </b-card>
-          <b-card border-variant="warning "
-                  header="Cost Centers"
-                  header-bg-variant="warning "
-                  header-class="h5 pt-1 pb-1"
-                  align="center">
-            <div class="pt-2">
-              <img class="card-img-top " src="../../../static/img/custom/cost_center.png"
-                   style="width: 8rem; height: 8rem;">
-            </div>
-            <div class="card-text pt-2">
-              Create new Cost Center.
-            </div>
-            <div class="pb-2 pt-4">
-              <b-button v-b-modal.modallg class="bg-warning border-warning; text-bold">Create Cost Center</b-button>
-            </div>
-          </b-card>
-          <b-card border-variant="info"
-                  header="Cost Rates"
-                  header-bg-variant="info "
-                  header-class="h5 pt-1 pb-1"
-                  align="center">
-            <div class="pt-4">
-              <img class="card-img-top " src="../../../static/img/custom/cost_rate.png"
-                   style="width: 7rem; height: 7rem;">
-            </div>
-            <div class="card-text pt-2">
-              Create new Cost Rates.
-            </div>
-            <div class="pb-2 pt-4">
-              <b-button v-b-modal.modallg class="bg-info border-info; text-bold">Create Cost Rates</b-button>
-            </div>
-          </b-card>
-        </b-card-group>
+
         <!-- User Create FORM -->
         <userFormModal
           my-message = "Create User"
@@ -90,9 +99,66 @@
 
     <b-container fluid class="mt-2 mb-3 mr-2 ml-2 rounded"
                  style="border-style: solid; border-width: 2px 1px 1px 1px; border-color: #125acd">
-      <!-- User table -->
+      <b-row class="ml-0 mt-1">
+        <div class="">
+          <div class="box box-warning">
+            <div class="box-header">
+              <h6>Cost Center</h6>
+              <div class="box-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
 
-      <!-- ./ User table -->
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table" >
+                <tr>
+                  <th>ID</th>
+                  <th>User</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Reason</th>
+                </tr>
+                <tr>
+                  <td>183</td>
+                  <td>John Doe</td>
+                  <td>11-7-2014</td>
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                </tr>
+                <tr>
+                  <td>219</td>
+                  <td>Alexander Pierce</td>
+                  <td>11-7-2014</td>
+                  <td><span class="label label-warning">Pending</span></td>
+                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                </tr>
+                <tr>
+                  <td>657</td>
+                  <td>Bob Doe</td>
+                  <td>11-7-2014</td>
+                  <td><span class="label label-primary">Approved</span></td>
+                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                </tr>
+                <tr>
+                  <td>175</td>
+                  <td>Mike Doe</td>
+                  <td>11-7-2014</td>
+                  <td><span class="label label-danger">Denied</span></td>
+                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                </tr>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </b-row>
     </b-container>
     <!-- ./Parent User FORM DIV -->
   </div>
@@ -132,4 +198,17 @@
     font-family: Roboto, Open Sans, helvetica, arial, sans-serif;
     background: #f8f8f8 !important;
   }
+  .rounded {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+  }
+
+  th, tr, td {
+    border-spacing: 0px !important;
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+    font-size: 12px;
+  }
+
 </style>

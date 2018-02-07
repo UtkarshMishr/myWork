@@ -80,7 +80,7 @@
                             :disabled=disablePrjLineBtn1
                             class="pb-0
                             pt-0
-                            bg-olive-active"
+                            bg-green-gradient"
                             @click="createLine(1)">
                     <i class="fa fa-plus"></i>
                     Add Line
@@ -181,7 +181,7 @@
                 <td>
                   <b-button type="button"
                             :disabled=disablePrjLineBtn2
-                            class="bg-olive-active
+                            class="bg-green-gradient
                             pb-0
                             pt-0"
                             @click="createLine(2)">
