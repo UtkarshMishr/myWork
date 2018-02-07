@@ -303,8 +303,8 @@
   var start_date = ''
   var end_date = ''
   var counter = 0
-  var lineCounterPrj1 = 0
-  var lineCounterPrj2 = 0
+  var lineCounterPrj1 = 1
+  var lineCounterPrj2 = 1
   export default {
     data() {
       return {
@@ -398,32 +398,24 @@
         event.preventDefault()
         /* Project 1 Logic*/
         if (index == 1) {
-          if (lineCounterPrj1 == 0) {
+          if (lineCounterPrj1 == 1) {
             this.showLine1Prj1 = true
-            this.disablePrjLineBtn1 = false
             lineCounterPrj1++
           }
-          else if (lineCounterPrj1 == 1) {
+          else if (lineCounterPrj1 == 2) {
             this.showLine2Prj1 = true
-            this.disablePrjLineBtn1 = false
             lineCounterPrj1++
-          }
-          else if (lineCounterPrj1 == 2){
             this.disablePrjLineBtn1 = true
           }
         }
         if (index == 2) {
-          if (lineCounterPrj2 == 0) {
+          if (lineCounterPrj2 == 1) {
             this.showLine1Prj2 = true
-            this.disablePrjLineBtn2 = false
             lineCounterPrj2++
           }
-          else if (lineCounterPrj2 == 1) {
+          else if (lineCounterPrj2 == 2) {
             this.showLine2Prj2 = true
-            this.disablePrjLineBtn2 = false
             lineCounterPrj2++
-          }
-          else if (lineCounterPrj2 == 2){
             this.disablePrjLineBtn2 = true
           }
         }
@@ -432,6 +424,7 @@
         event.preventDefault()
         if (val == 1) {
           this.showLine1Prj1 = false
+          this.disablePrjLineBtn1 = false
           this.form1L2.projectID = ''
           this.form1L2.activity = ''
           this.form1L2.chargeBackCC = ''
@@ -440,6 +433,7 @@
         }
         if (val == 2) {
           this.showLine2Prj1 = false
+          this.disablePrjLineBtn1 = false
           this.form1L3.projectID = ''
           this.form1L3.activity = ''
           this.form1L3.chargeBackCC = ''
@@ -448,6 +442,7 @@
         }
         if (val == 3) {
           this.showLine1Prj2 = false
+          this.disablePrjLineBtn2 = false
           this.form2L2.projectID = ''
           this.form2L2.activity = ''
           this.form2L2.chargeBackCC = ''
@@ -456,6 +451,7 @@
         }
         if (val == 4) {
           this.showLine2Prj2 = false
+          this.disablePrjLineBtn2 = false
           this.form2L3.projectID = ''
           this.form2L3.activity = ''
           this.form2L3.chargeBackCC = ''
