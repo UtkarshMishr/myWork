@@ -14,6 +14,7 @@ import ReposView from './components/views/Repos.vue'
 import UserSearchView from './components/views/UserSearch.vue'
 import UserCreateEditView from './components/views/UserCreateEdit.vue'
 import timesheetCreate from './components/views/timesheetSubmit.vue'
+import timesheetCreateOld from './components/views/timesheetSubmitOld.vue'
 
 // Routes
 const routes = [
@@ -62,6 +63,11 @@ const routes = [
         component: timesheetCreate,
         name: 'timesheetSubmit',
         meta: {description: 'User settings page'}
+      }, {
+        path: 'timesheetSubmitOld',
+        component: timesheetCreateOld,
+        name: 'timesheetSubmitOld',
+        meta: {description: 'Timesheet Submission page'}
       }, {
         path: 'access',
         component: AccessView,

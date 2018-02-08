@@ -89,11 +89,13 @@
               </tr>
               <tr v-show="showProject1">
                 <td>
+                  <div>
                   <v-select :options="Activity" label="AA"
                             placeholder="Search Activity"
                             title="Select an Activty"
                             v-model="form1L1.activity">
                   </v-select>
+                  </div>
                 </td>
                 <td>
                   <v-select :options="CostCenter" label="CC"

@@ -27,9 +27,9 @@
         <b-row>
         <div class="col-sm-12 col-md-6">
           <div class="box box-solid">
-            <div class="box-body">
+            <div class="box-body mt-0">
               <h6 style="background-color:#dedede;"
-              class="rounded text-center pt-2 pb-2">
+              class="rounded text-center pt-1 pb-1">
                 CREATE USERS
               </h6>
               <div class="media">
@@ -58,7 +58,7 @@
             <div class="box box-solid">
               <div class="box-body">
                 <h6 style="background-color:#dedede;"
-                    class="rounded text-center pt-2 pb-2">
+                    class="rounded text-center pt-1 pb-1">
                   CREATE COST RATES
                 </h6>
                 <div class="media">
@@ -76,8 +76,8 @@
                         </b-button>
                       </p>
                     </div>
-                    <h6 class="mt-0 ml-4">Create new cost rates</h6>
-                    <p class="ml-4" style="font-size: 14px">Use network username for profile creation</p>
+                    <h6 class="mt-0 ml-3">Create new cost rates</h6>
+                    <p class="ml-3" style="font-size: 14px">Use network username for profile creation</p>
                   </div>
                 </div>
               </div>
@@ -97,10 +97,7 @@
       </div>
     </b-container>
 
-    <b-container fluid class="mt-2 mb-3 mr-2 ml-2 rounded"
-                 style="border-style: solid; border-width: 2px 1px 1px 1px; border-color: #125acd">
-      <b-row class="ml-0 mt-1">
-        <div class="">
+      <b-row class="ml-2 mt-1 mr-2">
           <div class="box box-warning">
             <div class="box-header">
               <h6>Cost Center</h6>
@@ -115,51 +112,48 @@
               </div>
             </div>
             <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
+            <div class="box-body table-responsive no-padding ml-0">
               <table class="table" >
                 <tr>
                   <th>ID</th>
-                  <th>User</th>
-                  <th>Date</th>
+                  <th>Cost Center Name</th>
+                  <th>Division</th>
                   <th>Status</th>
-                  <th>Reason</th>
+                  <th>Desription</th>
                 </tr>
                 <tr>
-                  <td>183</td>
-                  <td>John Doe</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-success">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                  <td>5677</td>
+                  <td>JHAS Core</td>
+                  <td>JHAS</td>
+                  <td><b-badge variant="success">Enabled</b-badge></td>
+                  <td>JHAS core cost center</td>
                 </tr>
                 <tr>
-                  <td>219</td>
-                  <td>Alexander Pierce</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-warning">Pending</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                  <td>4345</td>
+                  <td>PMO</td>
+                  <td>JHAS</td>
+                  <td><b-badge variant="success">Enabled</b-badge></td>
+                  <td>PMO cost center for JHAS</td>
                 </tr>
                 <tr>
-                  <td>657</td>
-                  <td>Bob Doe</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-primary">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                  <td>4567</td>
+                  <td>Insurance DIV1</td>
+                  <td>INS</td>
+                  <td><b-badge variant="success">Enabled</b-badge></td>
+                  <td>US Insurance division 1 cost center</td>
                 </tr>
                 <tr>
-                  <td>175</td>
-                  <td>Mike Doe</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-danger">Denied</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                  <td>1234</td>
+                  <td>Annuities Mobile</td>
+                  <td>ANNUITIES</td>
+                  <td><b-badge variant="danger">Disabled</b-badge></td>
+                  <td>Annuties mobile and web development</td>
                 </tr>
               </table>
             </div>
             <!-- /.box-body -->
           </div>
-          <!-- /.box -->
-        </div>
       </b-row>
-    </b-container>
     <!-- ./Parent User FORM DIV -->
   </div>
   <!-- ./Main DIV -->
@@ -208,7 +202,7 @@
     border-spacing: 0px !important;
     padding-top: 1px !important;
     padding-bottom: 1px !important;
-    font-size: 12px;
+    font-size: 13px;
   }
 
 </style>

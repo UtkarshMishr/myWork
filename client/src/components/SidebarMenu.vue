@@ -8,18 +8,21 @@
         <span class="page">Dashboard</span>
       </a>
     </router-link>
-    <router-link tag="li" class="pageLink" to="/tables">
-      <a>
-        <i class="fa fa-table"></i>
-        <span class="page">Tables</span>
+    <!-- Projects Section -->
+    <li class="header" style="font-weight: bold; font-family: Roboto; font-size: 14px; padding-bottom: 4px; padding-top: 4px">Project Management</li>
+    <li class="treeview">
+      <a href="#">
+        <i class="fa fa-cubes text-warning"></i> <span>Projects</span>
+        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
       </a>
-    </router-link>
-    <router-link tag="li" class="pageLink" to="/tasks">
-      <a>
-        <i class="fa fa-tasks"></i>
-        <span class="page">Tasks</span>
-      </a>
-    </router-link>
+      <ul class="treeview-menu">
+        <li><router-link to="/timesheetSubmit"><i class="fa fa-cube text-warning"></i> Project Search</router-link></li>
+        <li><router-link to="/timesheetSubmit"><i class="fa fa-puzzle-piece text-warning"></i> Project Create</router-link></li>
+      </ul>
+    </li>
+    <!-- ./Projects Section -->
    <!--
     <router-link tag="li" class="pageLink" to="/user">
       <a>
@@ -38,7 +41,7 @@
             </span>
       </a>
       <ul class="treeview-menu">
-        <li><router-link to="/timesheetSubmit"><i class="fa fa-calendar text-aqua"></i> Timesheet Search</router-link></li>
+        <li><router-link to="/timesheetSubmitOld"><i class="fa fa-calendar text-aqua"></i> Timesheet Search</router-link></li>
         <li><router-link to="/timesheetSubmit"><i class="fa fa-clock-o text-aqua"></i> Timesheet Create</router-link></li>
       </ul>
     </li>
