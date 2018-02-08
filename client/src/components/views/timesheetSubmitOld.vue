@@ -31,7 +31,7 @@
             </div>
           </div>
           <!-- ./Date and time range -->
-
+          {{row}}
           <table id="myTable" class="table order-list">
             <thead>
             <tr class="timesheetTableHeader">
@@ -42,111 +42,35 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-if="show">
+            <tr v-for="(row, index) in rows">
               <td>
-                <input id="input" class="form-control" type="text" placeholder="Type to search...">
-                <typeahead v-model="model" target="#input" :data="states" item-key="name"/>
+                <mwselect :options="Project"
+                          v-model="row.projectName"
+                          style="width: 35rem"
+                ></mwselect>
               </td>
               <td>
-                <v-select :options="Activity" label="AA"
-                          placeholder="Search Activity"
-                          class="activityDiv"
-                          v-model="form.activity">
-                </v-select>
+                <mwselect :options="Activity"
+                          v-model="row.activity"
+                          style="width: 30rem"
+                ></mwselect>
               </td>
               <td>
-                <v-select :options="CostCenter" label="CC"
-                          class="costCenterDiv"
-                          v-model="form.chargeBackCC">
-                </v-select>
-              </td>
-              <td>
-                <b-form-input type="number"
-                              class="pb-1 pt-1"
-                              required
-                              v-model="form.hours"
-                              name="Hours">
-                </b-form-input>
-              </td>
-              <td>
-              </td>
-            </tr>
-            <!-- Timesheet Line #2
-            .
-            .-->
-            <tr v-if="show1">
-              <td>
-                <v-select :options="Project" label="name"
-                          placeholder="Search Project"
-                          class="projectDiv"
-                          v-model="form1.projectID">
-                </v-select>
-              </td>
-              <td>
-                <v-select :options="Activity" label="AA"
-                          placeholder="Search Activity"
-                          class="activityDiv"
-                          v-model="form1.activity">
-                </v-select>
-              </td>
-              <td>
-                <v-select :options="CostCenter" label="CC"
-                          placeholder="Search Cost Center"
-                          class="costCenterDiv"
-                          v-model="form1.chargeBackCC">
-                </v-select>
+                <mwselect :options="CostCenter"
+                          v-model="row.chargeBackCC"
+                          style="width: 15rem"
+                ></mwselect>
               </td>
               <td>
                 <b-form-input type="number"
                               class="pb-1 pt-1"
                               required
-                              v-model="form1.hours"
+                              v-model="row.hours"
                               name="Hours">
                 </b-form-input>
               </td>
               <td>
-                <button class="btn bg-red-gradient text-center"
-                        @click="deleteLine(1)">
-                  <i class="fa fa-trash-o"/></button>
-              </td>
-            </tr>
-            <!-- Timesheet Line #3
-            .
-            .-->
-            <tr v-if="show2">
-              <td>
-                <v-select :options="Project" label="name"
-                          placeholder="Search Project"
-                          class="projectDiv"
-                          v-model="form2.projectID">
-                </v-select>
-              </td>
-              <td>
-                <v-select :options="Activity" label="AA"
-                          placeholder="Search Activity"
-                          class="activityDiv"
-                          v-model="form1.activity">
-                </v-select>
-              </td>
-              <td>
-                <v-select :options="CostCenter" label="CC"
-                          placeholder="Search Cost Center"
-                          class="costCenterDiv"
-                          v-model="form2.chargeBackCC">
-                </v-select>
-              </td>
-              <td>
-                <b-form-input type="number"
-                              class="pb-1 pt-1"
-                              required
-                              v-model="form2.hours"
-                              name="Hours">
-                </b-form-input>
-              </td>
-              <td>
-                <button class="btn bg-red-gradient text-center"
-                        @click="deleteLine(2)">
-                  <i class="fa fa-trash-o"/></button>
+                <a v-on:click="removeElement(index);" style="cursor: pointer">Remove</a>
               </td>
             </tr>
             </tbody>
@@ -177,80 +101,41 @@
   import {projects} from '@/store/rallyProjects'
   import {costcenter} from '@/store/costCenter'
   import {activities} from '@/store/activities'
+  import mwselect from '@/components/plugins/mw-select'
+
   var period_name = ''
   var start_date = ''
   var end_date = ''
   var counter = 0
   export default {
+    components: {
+      mwselect
+    },
     data() {
       return {
-        model: '',
-        target: null,
-        states: projects,
         Project: projects,
         CostCenter: costcenter,
         Activity: activities,
-        show: true,
-        form: {
-          projectID: '',
-          workCategory: null,
-          activity: '',
-          chargeBackCC: '',
-          hours: ''
-        },
-        show1: false,
-        form1: {
-          projectID: '',
-          activity: '',
-          chargeBackCC: '',
-          hours: ''
-        },
-        show2: false,
-        form2: {
-          projectID: '',
-          activity: '',
-          chargeBackCC: '',
-          hours: ''
-        }
+        rows: []
       }  // return end
     },
     methods: {
       submitTimesheet(evt) {
         evt.preventDefault()
         alert(JSON.stringify(this.form) + JSON.stringify(this.form1) + '\n' + period_name
-          + '\n' + start_date + '\n' + end_date +'\n'+ this.SelectProjectID(this.form.projectID))
+          + '\n' + start_date + '\n' + end_date + '\n' + this.SelectProjectID(this.form.projectID))
       },
       createLine() {
-        if (counter == 0) {
-          console.log(counter)
-          this.show1 = true
-          counter++
-        }
-        else if (counter == 1) {
-          console.log(counter)
-          this.show2 = true
-          counter++
-        }
+        var elem = document.createElement('tr');
+        this.rows.push({
+          projectName: "",
+          activity: "",
+          chargeBackCC: "",
+          hours: ""
+        })
       },
-      deleteLine(val) {
-        if (val == 1) {
-          this.show1 = false
-          this.form1.projectName = ''
-          this.form1.valueStream = ''
-          this.form1.activity = ''
-          this.form1.chargeBackCC = ''
-          this.form1.hours = ''
-          counter--
-        }
-        if (val == 2) {
-          this.show2 = false
-          this.form2.projectName = ''
-          this.form2.valueStream = ''
-          this.form2.activity = ''
-          this.form2.chargeBackCC = ''
-          this.form2.hours = ''
-          counter--
-        }
+      removeElement: function (index) {
+        this.rows.splice(index, 1);
       },
       SelectProjectID(obj) {
         return obj['id']
@@ -258,21 +143,20 @@
     },
     /* ./ Method Close*/
     /*Starting Computed*/
-    mounted () {
-      this.target = this.$refs.input
-    }
   }
   /*JQuery Stuff*/
   /*Data Range Functionality*/
   $(function () {
     var start = moment().startOf('month');
     var end = moment().endOf('month');
+
     function cb(start, end) {
       period_name = (start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY')).toString()
       start_date = start.format('MM/DD/YYYY').toString()
       end_date = end.format('MM/DD/YYYY').toString()
       $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
     }
+
     $('#reportrange').daterangepicker({
       autoApply: true,
       showCustomRangeLabel: false,
@@ -291,24 +175,33 @@
   div {
     font-family: Roboto;
   }
+
   table {
     font-family: Roboto;
   }
+
+  tr {
+    padding-bottom: 2px;
+  }
+
   .timesheetTableHeader {
     font-weight: bold;
     border-bottom: #0d6aad solid 2px;
   }
+
   input[type="text"] {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
   }
+
   input[type="number"] {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     background: lightyellow;
   }
+
   .rounded {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -322,6 +215,7 @@
     padding-right: 2px;
     padding-left: 2px;
   }
+
   .activityDiv {
     max-width: 40em;
     max-height: 10em;
@@ -329,6 +223,7 @@
     padding-right: 2px;
     padding-left: 2px;
   }
+
   .costCenterDiv {
     max-width: 20em;
     max-height: 10em;

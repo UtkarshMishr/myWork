@@ -46,7 +46,7 @@ export const timeline = [{
   icon: 'fa-envelope',
   color: 'blue',
   title: 'Write short novel',
-  time: moment().endOf('day').fromNow(),
+  time: '',
   body: 'Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle quora plaxo ideeli hulu weebly balihoo...',
   buttons: [{
     type: 'primary',
@@ -59,12 +59,12 @@ export const timeline = [{
   icon: 'fa-user',
   color: 'yellow',
   title: 'Sarah Young accepted your friend request',
-  time: moment('20150620', 'MMM Do YY').fromNow()
+  time: ''
 },
 {
   icon: 'fa-camera',
   color: 'purple',
   title: 'Watch a youTube video',
-  time: moment('20130620', 'YYYYMMDD').fromNow(),
+  time: '',
   body: '<div class="embed-responsive embed-responsive-16by9"><iframe width="560" height="315" src="https://www.youtube.com/embed/8aGhZQkoFbQ" frameborder="0" allowfullscreen></iframe></div>'
 }]
