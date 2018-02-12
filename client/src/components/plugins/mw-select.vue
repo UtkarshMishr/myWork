@@ -57,7 +57,7 @@
     },
     data() {
       return {
-        placeholder: 'Search Item',
+        placeholder: 'Search item..',
         open: false,
         selectIndex: 0,
         displayText: '',
@@ -148,15 +148,14 @@
 <style type="text/css">
 
   .typeahead {
+    min-height: 30px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    position: relative;
+    max-width: 100%;
+    padding: 0px 10px 0px 10px;
+    margin: 0px 0px 0px 0px;
     display: block;
-    min-height: 35px;
-    border-radius: 5px;
-    border: 1px solid #BBBBBB;
-    position: absolute;
-    z-index: 1;
-    width: auto;
-    font-size: 14px;
-    background: white;
   }
 
   .typeahead__open {
@@ -165,45 +164,42 @@
 
   .typeahead__open .typeahead__text {
     color: #999;
-    opacity: 0.4;
+    opacity: 0.2;
   }
 
   .typeahead__toggle {
     position: relative;
-    z-index: 1;
-    width: auto;
+    width: 100%;
   }
 
   .typeahead__search {
-    position: absolute;
-    top: 0;
-    left: 0;
-    line-height: 1em;
-    font-size: 1em;
-    padding: 10px;
+    height: 30px;
     width: 100%;
     display: block;
     cursor: text;
     background: transparent;
     border: none;
     outline: none;
-    z-index: 2;
+    padding: 0px 10px 5px 0px;
+    position: absolute;
+    font-weight: 450;
   }
 
   .typeahead__text {
-    font-size: 1em;
-    line-height: 1em;
-    padding: 10px;
     display: inline-block;
-    position: relative;
-    z-index: 3;
   }
 
   .typeahead__list {
-    margin: 0;
-    padding: 0;
-    max-height: 400px;
+    margin: 0px 0px 0px -10px;
+    padding: 0px;
+    max-height: 200px;
     overflow-y: scroll;
+    position: absolute;
+    display: block;
+    background: white;
+    width: 100%;
+    box-shadow: 2px 2px 2px 2px #cfcfd0;
+    z-index: 1;
   }
 
   .typeahead__item {
@@ -213,27 +209,27 @@
 
   .typeahead__link {
     display: block;
-    padding: 10px;
+    padding: 5px 10px 5px 10px;
     line-height: 1em;
-    font-size: 1em;
     cursor: pointer;
+    font-family: Roboto;
   }
 
   .typeahead__active {
-    background: #41B883;
-    color: #fff;
-    font-weight: bold;
+    background: linear-gradient(#3232ff, #125acd);
+    color: #ffffff !important;
+    font-family: Roboto;
   }
 
   .clearText {
     position: absolute;
     font-size: 23px;
-    bottom: -3px;
+    top: -10px;
+    right: 0px;
     font-weight: 700;
     color: rgba(60, 60, 60, .5);
     border: 1px;
     background: transparent;
-    color: #bd4147;
     cursor: pointer;
   }
 

@@ -125,28 +125,28 @@
                   <td>5677</td>
                   <td>JHAS Core</td>
                   <td>JHAS</td>
-                  <td><b-badge variant="success">Enabled</b-badge></td>
+                  <td><b-badge style="font-weight: normal !important;" variant="success">Enabled</b-badge></td>
                   <td>JHAS core cost center</td>
                 </tr>
                 <tr>
                   <td>4345</td>
                   <td>PMO</td>
                   <td>JHAS</td>
-                  <td><b-badge variant="success">Enabled</b-badge></td>
+                  <td><b-badge style="font-weight: normal !important;" variant="success">Enabled</b-badge></td>
                   <td>PMO cost center for JHAS</td>
                 </tr>
                 <tr>
                   <td>4567</td>
                   <td>Insurance DIV1</td>
                   <td>INS</td>
-                  <td><b-badge variant="success">Enabled</b-badge></td>
+                  <td><b-badge style="font-weight: normal !important;" variant="success">Enabled</b-badge></td>
                   <td>US Insurance division 1 cost center</td>
                 </tr>
                 <tr>
                   <td>1234</td>
                   <td>Annuities Mobile</td>
                   <td>ANNUITIES</td>
-                  <td><b-badge variant="danger">Disabled</b-badge></td>
+                  <td><b-badge style="font-weight: normal !important;" variant="danger">Disabled</b-badge></td>
                   <td>Annuties mobile and web development</td>
                 </tr>
               </table>
