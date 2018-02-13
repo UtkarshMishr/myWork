@@ -53,7 +53,15 @@
       value: {
         type: [String, Number],
         default: null
-      }
+      },
+      rowData: {
+        type: String,
+        default: null
+      },
+      uniqueId: {
+        type:  Number,
+        default: null
+      },
     },
     data() {
       return {
@@ -182,7 +190,7 @@
     outline: none;
     padding: 0px 10px 5px 0px;
     position: absolute;
-    font-weight: 450;
+    font-weight: 500;
   }
 
   .typeahead__text {
