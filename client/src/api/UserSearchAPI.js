@@ -8,8 +8,8 @@ export default {
 }
 */
 
-var searchUsers = function () {
-  return Api().get('/userSearch')
+var searchUsers = function (query) {
+  return Api().post('/userSearch', query)
 }
 
 export default {

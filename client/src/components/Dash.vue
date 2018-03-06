@@ -10,17 +10,18 @@
           <i class="fa fa-home"></i><b>  myWork</b></span>
       </router-link>
       <!-- Header Navbar -->
-      <nav class="navbar navbar-toggleable-md navbar-light pt-1 pb-0" style="background-color: #018fd3;" role="navigation">
+      <nav class="navbar navbar-toggleable-md navbar-light bg-faded pt-1 pb-0" style="background-color: #018fd3;" role="navigation">
         <!-- Sidebar toggle button-->
         <a href="javascript:;" class="sidebar-toggle" data-toggle="offcanvas" role="button">
           <span class="sr-only">Toggle navigation</span>
         </a>
         <!-- Navbar Right Menu -->
+        <!-- Navbar Right Menu -->
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav ml-auto" >
             <!-- Search menu-->
             <form class="form-inline">
-              <input class="form-control mr-sm-2" type="text" placeholder="Search">
+              <input class="form-control mr-sm-2" style="min-width: 300px !important; min-height: 32px !important;" type="text" placeholder="Search">
               <button class="btn btn-success fa fa-search" type="submit"> Search</button>
             </form>
             <div>

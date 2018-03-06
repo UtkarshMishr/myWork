@@ -1,27 +1,54 @@
 <template>
   <!-- Main content -->
   <div>
-    <b-container fluid>
+    <div class="container-fluid">
       <!-- Main row -->
-      <b-row class="mt-2">
-        <b-col md="6">
+      <div class="row mt-2">
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
           <div class="box box-warning ">
             <div class="box-header with-border text-center">
               <h3 class="box-title">Employee vs Contractor Spend</h3>
             </div>
+            <div class="box-body">
+              <div class="row">
+                <div class="col-md-10">
+              <div class="chart-responsive">
             <canvas id="trafficBar"></canvas>
+              </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </b-col>
-        <b-col md="6">
+        </div>
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
           <div class="box box-success">
             <div class="box-header with-border text-center">
               <h3 class="box-title">Resource by BU</h3>
             </div>
-            <canvas id="languagePie"></canvas>
+            <div class="box-body">
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="chart-responsive">
+                    <canvas id="languagePie"></canvas>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <span class="text-bold">Bussiness Units</span>
+                  <ul class="chart-legend clearfix">
+                    <li><i class="fa fa-circle-o text-red"></i> JHAS</li>
+                    <li><i class="fa fa-circle-o text-green"></i> Annuities</li>
+                    <li><i class="fa fa-circle-o text-yellow"></i> RPS</li>
+                    <li><i class="fa fa-circle-o text-aqua"></i> TRS</li>
+                    <li><i class="fa fa-circle-o text-light-blue"></i> Insurance</li>
+                    <li><i class="fa fa-circle-o text-gray"></i> SAS</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
-        </b-col>
-      </b-row>
-      <b-row class="ml-1 mr-1">
+        </div>
+      </div>
+      <div class="row ml-1 mr-1">
         <!-- TABLE:  -->
         <div class="box box-info">
           <div class="box-header with-border text-center">
@@ -49,7 +76,9 @@
                 <tr>
                   <td><a href="pages/examples/invoice.html">OR9842</a></td>
                   <td>RPS TRS</td>
-                  <td><b-badge variant="primary">On Track</b-badge></td>
+                  <td>
+                   <h6> <span class="badge badge-primary">On Track</span></h6>
+                  </td>
                   <td>
                     <div class="progress-group">
                       <span class="progress-text">$167,9000</span>
@@ -64,7 +93,9 @@
                 <tr>
                   <td><a href="pages/examples/invoice.html">OR1848</a></td>
                   <td>John Hancock/ JHAS</td>
-                  <td><b-badge variant="danger">Over Budget</b-badge></td>
+                  <td>
+                    <h6><span class="badge badge-danger">Over Budget</span></h6>
+                  </td>
                   <td>
                     <div class="progress-group">
                       <span class="progress-text">$2,999,9000</span>
@@ -79,7 +110,9 @@
                 <tr>
                   <td><a href="pages/examples/invoice.html">OR7429</a></td>
                   <td>DevOps</td>
-                  <td> <b-badge variant="success">In Progress</b-badge></td>
+                  <td>
+                    <h6><span class="badge badge-success">In Progress</span></h6>
+                  </td>
                   <td>
                     <div class="progress-group">
                       <span class="progress-text">$3,967,9000</span>
@@ -94,7 +127,9 @@
                 <tr>
                   <td><a href="pages/examples/invoice.html">OR7429</a></td>
                   <td>Automation</td>
-                  <td><b-badge variant="danger">Over Budget</b-badge></td>
+                  <td>
+                    <h6><span class="badge badge-danger">Over Budget</span></h6>
+                  </td>
                   <td>
                     <div class="progress-group">
                       <span class="progress-text">$2,99,9000</span>
@@ -109,7 +144,9 @@
                 <tr>
                   <td><a href="pages/examples/invoice.html">OR1848</a></td>
                   <td>Agile</td>
-                  <td><b-badge variant="warning">Monitoring</b-badge></td>
+                  <td>
+                    <h6><span class="badge badge-warning">Monitoring</span></h6>
+                  </td>
                   <td>
                     <div class="progress-group">
                       <span class="progress-text">$2,08,9000</span>
@@ -124,7 +161,9 @@
                 <tr>
                   <td><a href="pages/examples/invoice.html">OR7429</a></td>
                   <td>Digitization</td>
-                  <td><b-badge variant="info">Closed</b-badge></td>
+                  <td>
+                    <h6><span class="badge badge-info">Closed</span></h6>
+                  </td>
                   <td>
                     <div class="progress-group">
                       <span class="progress-text">$9,2000</span>
@@ -139,7 +178,9 @@
                 <tr>
                   <td><a href="pages/examples/invoice.html">OR9842</a></td>
                   <td>Mobile and Web Apps</td>
-                  <td><b-badge variant="success">In Progress</b-badge></td>
+                  <td>
+                    <h6><span class="badge badge-success">In Progress</span></h6>
+                  </td>
                   <td>
                     <div class="progress-group">
                       <span class="progress-text">$1,08,9000</span>
@@ -166,11 +207,12 @@
         <!-- /.box -->
         <!-- /.col -->
 
-      </b-row>
+      </div>
       <!-- /.content -->
-    </b-container>
+    </div>
   </div>
 </template>
+
 
 <script>
   /* eslint-disable */
@@ -263,19 +305,6 @@
   }
 </script>
 <style>
-  .info-box {
-    cursor: pointer;
-  }
-
-  .info-box-content {
-    text-align: center;
-    vertical-align: middle;
-    display: inherit;
-  }
-
-  .fullCanvas {
-    width: 100%;
-  }
 
   .TableHeader {
     font-weight: bold;

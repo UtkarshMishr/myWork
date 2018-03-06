@@ -1,35 +1,16 @@
-/* eslint-disable */
-
 <template>
   <!-- Main DIV -->
   <div>
-    <!-- Show Alert on Success (pending has to do -->
-    <b-alert :show="dismissCountDown"
-             dismissible
-             variant="success"
-             class="ml-5 mr-5 mb-0 mt-1 center-block"
-             style="width: 50%"
-             @dismissed="dismissCountdown=0"
-             @dismiss-count-down="countDownChanged">
-      <b-progress variant="warning"
-                  animated
-                  :max="dismissSecs"
-                  :value="dismissCountDown"
-                  height="4px">
-      </b-progress>
-      <h4 class="alert-heading fa fa-check">&nbsp;&nbsp;New user created Successfully!</h4>
-    </b-alert>
-    <!-- ./Show Alert on Success -->
     <!-- Parent User FORM DIV -->
-    <b-container fluid class="mt-2 mb-3 mr-2 ml-2 rounded"
+    <div class="container-fluid mt-2 mb-3 mr-2 ml-2 csRounded"
                  style="border-style: solid; border-width: 2px 1px 1px 1px; border-color: #125acd">
-      <div class="mt-2 rounded">
-        <b-row>
+      <div class="mt-2 csRounded">
+        <div class="row">
         <div class="col-sm-12 col-md-6">
           <div class="box box-solid">
             <div class="box-body mt-0">
               <h6 style="background-color:#dedede;"
-              class="rounded text-center pt-1 pb-1">
+              class="csRounded text-center pt-1 pb-1">
                 CREATE USERS
               </h6>
               <div class="media">
@@ -41,10 +22,10 @@
                 <div class="media-body">
                   <div class="mt-4 mb-0 mr-2">
                     <p class="pull-right">
-                      <b-button  @click= "showModal = !showModal"
+                      <button  @click.prevent="showUserForm"
                                  class="btn btn-success btn-sm">
                         Create User
-                      </b-button>
+                      </button>
                     </p>
                   </div>
                   <h6 class="mt-0 ml-4">Create new users</h6>
@@ -58,7 +39,7 @@
             <div class="box box-solid">
               <div class="box-body">
                 <h6 style="background-color:#dedede;"
-                    class="rounded text-center pt-1 pb-1">
+                    class="csRounded text-center pt-1 pb-1">
                   CREATE COST RATES
                 </h6>
                 <div class="media">
@@ -70,10 +51,9 @@
                   <div class="media-body">
                     <div class="mt-4 mb-0 mr-2">
                       <p class="pull-right">
-                        <b-button  @click= "showModal = !showModal"
-                                   class="btn btn-success btn-sm">
+                        <button  class="btn btn-success btn-sm">
                           Create Cost Rate
-                        </b-button>
+                        </button>
                       </p>
                     </div>
                     <h6 class="mt-0 ml-3">Create new cost rates</h6>
@@ -83,21 +63,11 @@
               </div>
             </div>
           </div>
-        </b-row>
+        </div>
       </div>
-      <div>
+    </div>
 
-        <!-- User Create FORM -->
-        <userFormModal
-          my-message = "Create User"
-          :show="showModal"
-          >
-        </userFormModal>
-        <!-- ./User Create FORM -->
-      </div>
-    </b-container>
-
-      <b-row class="ml-2 mt-1 mr-2">
+      <div class="row ml-2 mt-1 mr-2">
           <div class="box box-warning">
             <div class="box-header">
               <h6>Cost Center</h6>
@@ -125,36 +95,44 @@
                   <td>5677</td>
                   <td>JHAS Core</td>
                   <td>JHAS</td>
-                  <td><b-badge style="font-weight: normal !important;" variant="success">Enabled</b-badge></td>
+                  <td><span class="badge badge-primary" style="font-weight: normal !important;">Enabled</span></td>
                   <td>JHAS core cost center</td>
                 </tr>
                 <tr>
                   <td>4345</td>
                   <td>PMO</td>
                   <td>JHAS</td>
-                  <td><b-badge style="font-weight: normal !important;" variant="success">Enabled</b-badge></td>
+                  <td><span class="badge badge-primary" style="font-weight: normal !important;">Enabled</span></td>
                   <td>PMO cost center for JHAS</td>
                 </tr>
                 <tr>
                   <td>4567</td>
                   <td>Insurance DIV1</td>
                   <td>INS</td>
-                  <td><b-badge style="font-weight: normal !important;" variant="success">Enabled</b-badge></td>
+                  <td><span class="badge badge-primary" style="font-weight: normal !important;">Enabled</span></td>
                   <td>US Insurance division 1 cost center</td>
                 </tr>
                 <tr>
                   <td>1234</td>
                   <td>Annuities Mobile</td>
                   <td>ANNUITIES</td>
-                  <td><b-badge style="font-weight: normal !important;" variant="danger">Disabled</b-badge></td>
+                  <td><span class="badge badge-danger" style="font-weight: normal !important;">Disabled</span></td>
                   <td>Annuties mobile and web development</td>
                 </tr>
               </table>
             </div>
             <!-- /.box-body -->
           </div>
-      </b-row>
+      </div>
     <!-- ./Parent User FORM DIV -->
+    <!-- User Create FORM -->
+    <userFormModal
+      mymessage = "Create User"
+      v-if="showUserFormModal"
+      @close="showUserFormModal = false"
+    >
+    </userFormModal>
+    <!-- ./User Create FORM -->
   </div>
   <!-- ./Main DIV -->
 </template>
@@ -166,9 +144,7 @@
   export default {
     data() {
       return {
-        showModal: false,
-        dismissSecs: 5,
-        dismissCountDown: 0,
+        showUserFormModal: false,
         serverResponse: null,
       }  // return end
     }
@@ -177,10 +153,9 @@
       userFormModal: userFormModal
     },
     methods: {
-      countDownChanged(dismissCountDown) {
-        this.dismissCountDown = dismissCountDown
+      showUserForm: function(e) {
+        this.showUserFormModal = true;
       }
-
     } //  methods end
 
   } // Export default end
@@ -188,11 +163,8 @@
 </script>
 
 <style>
-  body {
-    font-family: Roboto, Open Sans, helvetica, arial, sans-serif;
-    background: #f8f8f8 !important;
-  }
-  .rounded {
+
+  .csRounded {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;

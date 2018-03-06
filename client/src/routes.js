@@ -12,9 +12,13 @@ import AccessView from './components/views/Access.vue'
 import ServerView from './components/views/Server.vue'
 import ReposView from './components/views/Repos.vue'
 import UserSearchView from './components/views/UserSearch.vue'
-import UserCreateEditView from './components/views/UserCreateEdit.vue'
-import timesheetCreate from './components/views/timesheetSubmit.vue'
-import timesheetCreateOld from './components/views/timesheetSubmitOld.vue'
+import UserSubmit from './components/views/UserSubmit.vue'
+import timesheetSearch from './components/views/timesheetSearch.vue'
+import timesheetSubmit from './components/views/timesheetSubmit.vue'
+import timesheetCreate from './components/views/timesheetCreatePage.vue'
+import projectSubmit from './components/views/projectSubmit.vue'
+import projectCreate from './components/views/projectCreate.vue'
+import projectSearch from './components/views/projectSearch.vue'
 
 // Routes
 const routes = [
@@ -54,20 +58,45 @@ const routes = [
         name: 'UsersSearch',
         meta: {description: 'User settings page'}
       }, {
-        path: 'userCreateEdit',
-        component: UserCreateEditView,
-        name: 'UsersCreateEdit',
-        meta: {description: 'User settings page'}
+        path: 'UserSubmit',
+        component: UserSubmit,
+        name: 'UserSubmit',
+        meta: {description: 'User Submission page'}
       }, {
         path: 'timesheetSubmit',
-        component: timesheetCreate,
+        component: timesheetSubmit,
         name: 'timesheetSubmit',
-        meta: {description: 'User settings page'}
+        meta: {description: 'Timesheet Submission Page'}
+      },
+      {
+        path: 'timesheetSearch',
+        component: timesheetSearch,
+        name: 'timesheetSearch',
+        meta: {description: 'Timesheet Search Page'}
       }, {
-        path: 'timesheetSubmitOld',
-        component: timesheetCreateOld,
-        name: 'timesheetSubmitOld',
-        meta: {description: 'Timesheet Submission page'}
+        path: 'timesheetCreate/:id/create',
+        component: timesheetCreate,
+        name: 'timesheetCreate',
+        props: true,
+        meta: {description: 'Timesheet Creation page'}
+      },
+      {
+        path: 'projectSubmit',
+        component: projectSubmit,
+        name: 'projectSubmit',
+        meta: {description: 'Project Submit Page'}
+      },
+      {
+        path: 'projectCreate',
+        component: projectCreate,
+        name: 'projectCreate',
+        meta: {description: 'Project Create Page'}
+      },
+      {
+        path: 'projectSearch',
+        component: projectSearch,
+        name: 'projectSearch',
+        meta: {description: 'Project Search Page'}
       }, {
         path: 'access',
         component: AccessView,

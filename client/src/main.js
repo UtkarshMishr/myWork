@@ -10,9 +10,7 @@ import VueRouter from 'vue-router'
 import routes from './routes'
 import store from './store'
 
-// Import Bootstrap vue components
-import BootstrapVue from 'bootstrap-vue'
-import vSelect from 'vue-select'
+import VeeValidate from 'vee-validate'
 
 // Import Helpers for filters
 // UM Disabled as of now
@@ -28,8 +26,7 @@ Vue.filter('prettyDate', prettyDate)
 Vue.filter('pluralize', pluralize) */
 
 Vue.use(VueRouter)
-Vue.use(BootstrapVue)
-Vue.component('v-select', vSelect)
+Vue.use(VeeValidate)
 
 // Routing logic
 var router = new VueRouter({

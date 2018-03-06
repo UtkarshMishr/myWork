@@ -18,8 +18,8 @@
             </span>
       </a>
       <ul class="treeview-menu">
-        <li><router-link to="/timesheetSubmit"><i class="fa fa-cube text-warning"></i> Project Search</router-link></li>
-        <li><router-link to="/timesheetSubmit"><i class="fa fa-puzzle-piece text-warning"></i> Project Create</router-link></li>
+        <li><router-link to="/projectSearch"><i class="fa fa-cube text-warning"></i> Project Search</router-link></li>
+        <li><router-link to="/projectSubmit"><i class="fa fa-puzzle-piece text-warning"></i> Project Create</router-link></li>
       </ul>
     </li>
     <!-- ./Projects Section -->
@@ -41,7 +41,7 @@
             </span>
       </a>
       <ul class="treeview-menu">
-        <li><router-link to="/timesheetSubmitOld"><i class="fa fa-calendar text-aqua"></i> Timesheet Search</router-link></li>
+        <li><router-link to="/timesheetSearch"><i class="fa fa-calendar text-aqua"></i> Timesheet Search</router-link></li>
         <li><router-link to="/timesheetSubmit"><i class="fa fa-clock-o text-aqua"></i> Timesheet Create</router-link></li>
       </ul>
     </li>
@@ -57,7 +57,7 @@
       </a>
       <ul class="treeview-menu">
         <li><router-link to="/userSearch"><i class="fa fa-users text-green"></i> User Search/Edit</router-link></li>
-        <li><router-link to="/userCreateEdit"><i class="fa fa-user-plus text-green"></i> Users Create</router-link></li>
+        <li><router-link to="/UserSubmit"><i class="fa fa-user-plus text-green"></i> Users Create</router-link></li>
       </ul>
     </li>
     <!-- ./User Section -->

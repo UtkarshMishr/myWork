@@ -62,7 +62,6 @@
         console.log(JSON.stringify(response.data))
         if (response.data == 'Success'){
           this.$router.push('/')
-          console.log('Hellp')
 //          alert(JSON.stringify(response.data))
         }
 

@@ -1,7 +1,7 @@
 <template>
   <div :class="typeaheadState">
     <div class="typeahead__toggle" ref="toggle" @mousedown.prevent="toggle">
-      <input type="text"
+      <input type="text1"
              class="typeahead typeahead__search"
              ref="search"
              v-model="search"
@@ -65,7 +65,7 @@
     },
     data() {
       return {
-        placeholder: 'Search item..',
+        placeholder: 'Search ..',
         open: false,
         selectIndex: 0,
         displayText: '',
@@ -106,6 +106,7 @@
         const option = this.filteredOptions[this.selectIndex]
         if (option) {
           this.select(option)
+          this.placeholder = ''
         }
       },
       select(option) {
@@ -147,11 +148,12 @@
       clearText: function () {
         this.displayText = null
         this.selectIndex = ''
-        this.placeholder = 'Search Item'
+        this.placeholder = 'Search ..'
         this.$emit('input', (null))
       }
     }
   }
+
 </script>
 <style type="text/css">
 
@@ -161,7 +163,7 @@
     border: 1px solid #ccc;
     position: relative;
     max-width: 100%;
-    padding: 0px 10px 0px 10px;
+    padding: 2px 10px 0px 10px;
     margin: 0px 0px 0px 0px;
     display: block;
   }
@@ -198,7 +200,7 @@
   }
 
   .typeahead__list {
-    margin: 0px 0px 0px -10px;
+    margin: 3px 0px 0px -10px;
     padding: 0px;
     max-height: 200px;
     overflow-y: scroll;
